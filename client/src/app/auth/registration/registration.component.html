@@ -1,0 +1,6 @@
+<h1>Reg</h1>
+<form (ngSubmit)="register()" #registrationForm="ngForm">
+  <input type="text" name="login" [(ngModel)]="user.userName">
+  <div #registrationIframe></div>
+  <button>Submit</button>
+</form>

@@ -173,10 +173,12 @@ const callbackConfig = {
 
 const zkitApi = require("./zkitApi")(config, callbackConfig);
 app.use("/api", zkitApi.router);
-app.use("/zkit-sdk.js", (req, res) =>
-  res.redirect(
-    `${config.zeroKit.serviceUrl}/static/v${config.zeroKit.sdkVersion}/zkit-sdk.js`
-  ));
+app.use("/libs/zkit-sdk.js", (req, res) => {
+  console.log('atas');
+    res.redirect(
+        `${config.zeroKit.serviceUrl}/static/v${config.zeroKit.sdkVersion}/zkit-sdk.js`
+    )
+});
 
 /* Uncomment these lines to also serve static files
 app.use(express.static(path.join(__dirname, 'static/')));
