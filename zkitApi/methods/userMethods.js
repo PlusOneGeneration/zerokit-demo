@@ -27,7 +27,7 @@ module.exports = function(callbackConfig) {
 
       debugLog("Found: %o", user);
 
-      if (user.state === 1) throw errors.forbidden("UserNotValidated");
+      // if (user.state === 1) throw errors.forbidden("UserNotValidated");
 
       return Promise.resolve() // This way sync and async errors are captured the same way.
         .then(() => callbackConfig.canGetUserId && !callbackConfig.canGetUserId(user.toObject()))
@@ -35,7 +35,7 @@ module.exports = function(callbackConfig) {
           if (appApproved) throw errors.forbidden("ApplicationDenied");
 
           debugLog("Returning: %s", user.zkitId);
-          return user.zkitId;
+          return {zkitUserId: user.zkitId};
         });
     });
   }

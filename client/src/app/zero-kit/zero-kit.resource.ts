@@ -14,12 +14,6 @@ export class ZeroKitResource extends Resource {
 
   @ResourceAction({
     method: RequestMethod.Post,
-    path: '/new-tresor'
-  })
-  createTresor: ResourceMethod<{tresorId: string}, string>;
-
-  @ResourceAction({
-    method: RequestMethod.Post,
     url: '/api/user/init-user-registration'
   })
   register: ResourceMethod<any, any>;
@@ -32,7 +26,13 @@ export class ZeroKitResource extends Resource {
 
   @ResourceAction({
     method: RequestMethod.Post,
-    url: '/api/user/get-user-id'
+    url: '/api/user/validate-user'
+  })
+  validateUser: ResourceMethod<any, any>;
+
+  @ResourceAction({
+    method: RequestMethod.Get,
+    url: '/api/user/get-user-id',
   })
   login: ResourceMethod<any, any>;
 }

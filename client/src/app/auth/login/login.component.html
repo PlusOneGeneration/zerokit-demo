@@ -1,11 +1,6 @@
-<h1>
-  {{title}}
-</h1>
-
-<!--<ul>-->
-<!--<li><a routerLink="/" routerLinkActive="active">Home</a></li>-->
-<!--<li><a  [routerLink]="['login']" routerLinkActive="active">User</a></li>-->
-<!--</ul>-->
-
-
-<router-outlet></router-outlet>
+<h1>Login</h1>
+<form (ngSubmit)="login()" #loginForm="ngForm">
+  <input type="text" name="login" [(ngModel)]="user.userName">
+  <div #loginIframe></div>
+  <button>Submit</button>
+</form>

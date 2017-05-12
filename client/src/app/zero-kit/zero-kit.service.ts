@@ -21,6 +21,12 @@ export class ZeroKitService {
       .toPromise();
   }
 
+  validate(user: any): Promise <any> {
+    return this.zeroKitResource.validateUser(user)
+      .$observable
+      .toPromise();
+  }
+
   registerApprove(data: any): Promise <any> {
     return this.zeroKitResource.finishRegistration(data)
       .$observable
