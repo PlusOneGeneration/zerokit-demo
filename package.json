@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start.example": "node ./bin/www",
     "start": "nodemon -i .vagrant -i node_modules app.js",
     "test": "test"
   },
@@ -13,6 +14,23 @@
     "express": "^4.15.2",
     "express-form": "^0.12.6",
     "mongoose": "^4.9.8",
-    "passport": "^0.3.2"
+    "body-parser": "^1.17.1",
+    "connect-ensure-login": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.1",
+    "debug": "^2.6.0",
+    "express-session": "^1.13.0",
+    "helmet": "^3.5.0",
+    "jsonwebtoken": "^7.3.0",
+    "jwk-to-pem": "^1.2.6",
+    "mongodb": "^2.2.24",
+    "morgan": "^1.8.1",
+    "oauth": "^0.9.15",
+    "passport": "^0.3.2",
+    "passport-http-bearer": "^1.0.1",
+    "passport-openidconnect": "git+https://github.com/jaredhanson/passport-openidconnect.git#ac1c0257f02353f818be33c0602cca5883d97235",
+    "request": "^2.79.0",
+    "request-promise-native": "^1.0.3",
+    "uid2": "^0.0.3"
   }
 }
