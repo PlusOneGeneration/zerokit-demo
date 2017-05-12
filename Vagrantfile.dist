@@ -1,0 +1,77 @@
+VAGRANTFILE_API_VERSION = "2"
+
+name = "zkit-app"
+memory = "1024"
+cpu="2"
+type="nfs" # "", "nfs"
+ip = "192.168.10.20"
+home = "/home/vagrant/project"
+sync= "."
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  #VM
+  config.vm.box = "ubuntu/trusty64"
+
+  if type
+    config.vm.synced_folder sync, home, type: type
+  else
+    config.vm.synced_folder sync, home
+  end
+
+  config.vm.network :private_network, ip: ip
+  config.vm.network "forwarded_port", guest: 5858, host: 5858
+
+  config.vm.provider "virtualbox" do |v|
+    v.name = name
+    v.customize ["modifyvm", :id, "--memory", memory]
+    v.customize ["modifyvm", :id, "--cpus", cpu]
+    v.customize ["modifyvm", :id, "--vram", "8"]
+    v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
+  end
+
+  #PROVISION
+
+  ##update
+  config.vm.provision "shell", inline: "sudo apt-get -y update"
+
+  ##curl
+  config.vm.provision "shell", inline: "which curl || sudo apt-get install -y curl"
+
+  ##git
+  config.vm.provision "shell", inline: "which git || sudo apt-get install -y git"
+
+  ##bash-completion
+  config.vm.provision "shell", inline: "sudo dpkg -l | grep bash-completion || ( sudo apt-get install -y bash-completion )"
+
+  ##nodejs
+  ##config.vm.provision "shell", inline: "which npm || ( sudo apt-get update -y && sudo apt-get -y install python-software-properties python g++ make && sudo add-apt-repository -y ppa:chris-lea/node.js && sudo apt-get update -y && sudo apt-get -y install nodejs )"
+
+  ##nodejs
+  config.vm.provision "shell", inline: "(node -v | grep 'v7.0' || sudo apt-get purge nodejs npm -y && sudo apt-get update -y && curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash - && sudo apt-get install -y nodejs)"
+
+  ##nodemon
+  config.vm.provision "shell", inline: "which nodemon || (sudo npm install -g nodemon@1.3.8)"
+
+  ##node-inspector
+  config.vm.provision "shell", inline: "which  node-inspector || sudo npm install -g  node-inspector"
+
+  ##bower
+  config.vm.provision "shell", inline: "which bower || sudo npm install -g bower"
+
+  ##pm2
+  config.vm.provision "shell", inline: "which pm2 || sudo npm install -g pm2"
+
+  ##express-livereload
+  config.vm.provision "shell", inline: "npm list -g | grep express-livereload || sudo npm install -g express-livereload"
+
+  ##mongo
+  config.vm.provision "shell", inline: "which mongo || (sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list && sudo apt-get update && sudo apt-get install -y mongodb-org)"
+
+  ##docker
+  config.vm.provision "shell", inline: "which docker || ( curl -sSL https://get.docker.com/ | sudo sh)"
+
+  ##docker compose
+  config.vm.provision "shell", inline: "which docker-compose || ( curl -L https://github.com/docker/compose/releases/download/1.1.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose )"
+
+end

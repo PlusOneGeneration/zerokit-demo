@@ -1,0 +1,18 @@
+{
+  "name": "zkit.app",
+  "version": "0.0.1",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon -i .vagrant -i node_modules app.js",
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2",
+    "express-form": "^0.12.6",
+    "mongoose": "^4.9.8",
+    "passport": "^0.3.2"
+  }
+}
