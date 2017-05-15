@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start.example": "node ./bin/www",
-    "start": "nodemon -i .vagrant -i node_modules app.js",
+    "start": "node ./bin/www",
+    "start.backend": "nodemon  -i .vagrant -i node_modules -i features -i client ./bin/www",
     "test": "test"
   },
   "author": "",
