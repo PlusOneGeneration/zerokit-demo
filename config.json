@@ -1,7 +1,7 @@
 {
   "dbUrl": "mongodb://localhost/zkit-example",
-  "baseUrl": "http://192.168.10.20:3000",
-  "appOrigins": ["http://192.168.10.20:3000", "http://localhost:3000"],
+  "baseUrl": "http://localhost:3000",
+  "appOrigins": ["http://localhost:3000"],
   "zeroKit": {
     "serviceUrl": "https://s7g8gjvuj7.api.tresorit.io",
     "adminUserId": "admin@s7g8gjvuj7.tresorit.io",
