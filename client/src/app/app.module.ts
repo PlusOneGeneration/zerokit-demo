@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import {AuthModule} from "./auth/auth.module";
 import {ZeroKitModule} from "./zero-kit/zero-kit.module";
 import {ResourceModule} from "ngx-resource";
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import {ResourceModule} from "ngx-resource";
     FormsModule,
     HttpModule,
     ResourceModule.forRoot(),
+    RouterModule.forRoot([]),
     AuthModule,
     ZeroKitModule
   ],

@@ -4,6 +4,7 @@ import {ZeroKitService} from "../../zero-kit/zero-kit.service";
 // import { Login } from "./Login";
 // import {ActivatedRoute} from "@angular/router";
 
+//TODO @@@dr renamge login to sign in
 @Component({
   selector: 'login',
   templateUrl: './login.component.html',
@@ -11,7 +12,7 @@ import {ZeroKitService} from "../../zero-kit/zero-kit.service";
 
 export class LoginComponent implements OnInit {
   title = 'Login works!';
-  user: any = {login: '', password: ''};
+  user: any = {username: ''};
   zkitLoginForm: any;
 
   @ViewChild('loginIframe') zkitLoginRef: ElementRef;
@@ -25,8 +26,10 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log(this.user);
-    this.zeroKitService.login(this.user)
+    // console.log(this.user);
+    let user = {userName: this.user.username};
+
+    this.zeroKitService.login(user)
       .then((res) => {
         console.log('user', res);
         this.zkitLoginForm.login(res.zkitUserId)

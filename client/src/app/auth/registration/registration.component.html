@@ -1,7 +1,32 @@
-<h1>Reg</h1>
-<form (ngSubmit)="register()" #registrationForm="ngForm">
-  <input type="text" name="login" [(ngModel)]="user.userName">
-  <div #registrationIframe></div>
-  <button>Submit</button>
-</form>
-<button (click)="validate()">Validate</button>
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-4 col-md-4 col-sm-offset-4 col-sm-4">
+      <form class="form-signin"
+            (ngSubmit)="register()"
+            #registrationForm="ngForm">
+        <h2 class="form-signin-heading text-center">Sign Up</h2>
+        <label for="inputUserName" class="sr-only">Username</label>
+        <input
+          type="userName"
+          id="inputUserName"
+          class="form-control"
+          placeholder="Username"
+          required=""
+          autofocus=""
+          name="name"
+          [(ngModel)]="user.username">
+
+        <div #registrationIframe></div>
+
+        <div class="checkbox"></div>
+
+        <button class="btn btn-primary btn-block" type="submit">Sign Up</button>
+        <button class="btn btn-link btn-block" type="button" routerLink="/auth/sign-in">Sign In</button>
+
+      </form>
+      <button (click)="validate()">Validate</button>
+
+    </div>
+  </div>
+</div>
+

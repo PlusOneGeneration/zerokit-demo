@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-// import { AuthRoutingModule} from "./auth.routing.module";
 import {RouterModule} from "@angular/router";
 
 import { AuthComponent } from './auth.component';
@@ -10,7 +9,7 @@ import {LoginComponent} from "./login/login.component";
 import {RegistrationComponent} from "./registration/registration.component";
 import {FormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
-
+import {AuthRoutingModule} from "./auth.routing.module";
 
 @NgModule({
   declarations: [
@@ -22,10 +21,11 @@ import {CommonModule} from "@angular/common";
     BrowserModule,
     RouterModule.forRoot([]),
     FormsModule,
-    CommonModule
+    CommonModule,
+    RouterModule.forRoot([]),
+    AuthRoutingModule
   ],
   providers: [AuthService],
   exports: [AuthComponent],
-  // bootstrap: [AuthComponent]
 })
 export class AuthModule { }

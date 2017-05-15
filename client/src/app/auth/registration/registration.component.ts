@@ -4,6 +4,7 @@ import {ZeroKitService} from "../../zero-kit/zero-kit.service";
 // import { Registration } from "./Registration";
 // import {ActivatedRoute} from "@angular/router";
 
+//TODO @@@dr rename registration to sign up
 @Component({
   selector: 'registration',
   templateUrl: './registration.component.html'
@@ -28,8 +29,9 @@ export class RegistrationComponent implements OnInit {
   register() {
     console.log(this.user);
     // this.user.userName = 'test-user-' + this.user.userName;
+    let user = {userName: this.user.username};
 
-    this.zeroKitService.register(this.user)
+    this.zeroKitService.register(user)
       .then((response) => {
 
         console.log('response', response);
