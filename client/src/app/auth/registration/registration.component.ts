@@ -56,8 +56,8 @@ export class RegistrationComponent implements OnInit {
 
   validate() {
     this.zeroKitService.validate({
-      validationCode: "hyH0xBK4rUhVizzr5C1ytARNT9Eur7Y0",
-      userId: "20170512033342.i8np38zw@s7g8gjvuj7.tresorit.io"
+      validationCode: "psUFVajj6EkdoAKGZ3EfwxY3T43K4KNH",
+      userId: "20170515100254.75s9zhss@s7g8gjvuj7.tresorit.io"
     })
       .then((success) => {
         console.log('validated');

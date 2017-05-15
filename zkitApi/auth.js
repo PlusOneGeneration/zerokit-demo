@@ -78,28 +78,35 @@ function router(callbackConfig) {
   const authApi = require("express").Router();
 
   authApi.get("/login", function(req, res, next) {
-    console.log('IDP +>>>');
     debugLog("login called");
     const clientId = req.query.clientId || req.session.clientID || config.zeroKit.idp[0].clientID;
     if (!clientId) return res.json(errors.badInput("NoClientId"));
     debugLog("got clientid");
     debugLog("requested a redirect to: %s on success", req.query.reto);
+    console.log('clientId', clientId);
     req.session.clientID = clientId;
     req.session.returnTo = req.query.reto;
+      console.log('session',req.session);
 
     return passport.authenticate("openid-" + clientId)(req, res, next);
   });
 
   authApi.get("/callback", function(req, res, next) {
-    const clientId = req.session.clientID;
+    console.log('CALBACK!!');
+    // const clientId = req.session.clientID;
+    const clientId = 's7g8gjvuj7_8XWEmNCNox';
+    // res.session.returnTo = 'http://localhost:3000/';
+    const returnTo = 'http://localhost:3000/';
+      console.log('session',req.session);
     debugLog("login-cb called");
-    debugLog("returnTo is: %s", req.session.returnTo);
+    // debugLog("returnTo is: %s", req.session.returnTo);
     if (!clientId) return res.json({ code: "BadInput", message: "NoClientId" }).status(400);
 
-    console.log('Callback !!!');
     return passport.authenticate("openid-" + clientId, {
-      successRedirect: req.session.returnTo,
-      failureRedirect: req.session.returnTo + "#error"
+      // successRedirect: req.session.returnTo,
+      successRedirect: returnTo,
+      // failureRedirect: req.session.returnTo + "#error"
+      failureRedirect: returnTo + "#error"
     })(req, res, next);
   });
 

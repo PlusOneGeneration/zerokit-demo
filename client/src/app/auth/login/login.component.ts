@@ -35,27 +35,44 @@ export class LoginComponent implements OnInit {
           })
 
       });
+  }
 
-    // this.zeroKitService.register(this.user)
-    //   .then((response) => {
-    //
-    //     console.log('response', response);
-    //     this.zkitLoginForm.register(response.userId, response.regSessionId)
-    //       .then((succRegResp) => {
-    //         console.log('succRegResp', succRegResp);
-    //         this.zeroKitService.registerApprove({
-    //           userId: response.userId,
-    //           validationVerifier: succRegResp.RegValidationVerifier
-    //         })
-    //           .then((success) => {
-    //             console.log('success', success);
-    //           })
-    //           .catch((err) => {
-    //             console.log('err +>>', err);
-    //           })
-    //
-    //       })
-    //   })
+  idpLogin() {
+    var iframe = document.createElement("iframe");
+    iframe.className = "hidden";
+    document.body.appendChild(iframe);
+
+    iframe.onload = function () {
+      var iframeLocation;
+      try {
+        iframeLocation = iframe.contentWindow.location;
+        console.log('iframeLocation', iframeLocation);
+        if (iframeLocation.origin !== window.location.origin) return false; // This will throw anyway...
+      } catch (ex) {
+        console.log('err', ex);
+        return false;
+      }
+      // We got back to the backend the same origin
+      if (iframeLocation.pathname === location.pathname) {
+        // Got back to the callback
+        document.body.removeChild(iframe);
+        // If the url contains error the login was unsuccessful
+        if (iframeLocation.hash && iframeLocation.hash.indexOf("error") !== -1){
+          console.error(iframeLocation.search.substr(1));
+          // return onError(iframeLocation.search.substr(1));
+          return ;
+
+        }
+
+        // Success. The backend should've set a session cookie that it will use to authenticate every call
+        console.log('success');
+      }
+    };
+
+    // Set the iframe to the idp login url on the backend
+    iframe.src =  "http://localhost:3000/api/auth/login?clientId=" + "s7g8gjvuj7_8XWEmNCNox" + "&reto=" + "http://localhost:3000/";
+
+    console.log('iframe', iframe);
   }
 
 }
