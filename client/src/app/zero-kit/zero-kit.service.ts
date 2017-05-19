@@ -40,6 +40,12 @@ export class ZeroKitService {
       .toPromise();
   }
 
+  createTresor(tresorId: string): Promise<any> {
+    return this.zeroKitResource.createTresor({tresorId: tresorId})
+      .$observable
+      .toPromise();
+  }
+
   iFrameIdpAuth(element, path = ''): Promise<any> {
     return new Promise((resolve, reject) => {
       let iframe = document.createElement("iframe");
@@ -53,7 +59,8 @@ export class ZeroKitService {
             && iframe.contentWindow.location.origin == window.location.origin) {
             resolve(iframe.contentWindow.location.href);
           }
-        } catch (ex) {}
+        } catch (ex) {
+        }
       };
       //TODO @@@dr add config
       // Set the iframe to the idp login url on the backend

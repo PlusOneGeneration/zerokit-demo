@@ -32,4 +32,10 @@ export class ZeroKitResource extends Resource {
     url: '/api/user/get-user-id',
   })
   login: ResourceMethod<any, any>;
+
+  @ResourceAction({
+    method: RequestMethod.Post,
+    url: '/api/tresor/created',
+  })
+  createTresor: ResourceMethod<any, any>;
 }

@@ -1,28 +1,36 @@
 import {Injectable} from "@angular/core";
 
+declare let zkit_sdk;
+
 @Injectable()
 export class ZeroKitSdkService {
-  zeroKitSdk: any;
 
-  constructor() {}
-
-  setSdkIFrame(iFrame) {
-    this.zeroKitSdk = iFrame;
+  constructor() {
   }
 
-  getSdkIFrame() {
-    return this.zeroKitSdk;
+  // setSdkIFrame(iFrame) {
+  //   this.zeroKitSdk = iFrame;
+  // }
+  //
+  // getSdkIFrame() {
+  //   return this.zeroKitSdk;
+  // }
+
+  createTresor(): Promise<string> {
+    return new Promise((resolve, reject) => {
+      zkit_sdk.createTresor()
+        .then((result) => resolve(result))
+        .catch((err) => reject(err));
+    });
   }
 
-  login(zeroKitUserId){
-    console.log(this.zeroKitSdk);
-    return this.zeroKitSdk.login(zeroKitUserId);
+  encrypt(tresorId: string, text: string): Promise<string>{
+    return new Promise((resolve, reject) => {
+      zkit_sdk.encrypt(tresorId, text)
+        .then((encryptedText) => resolve(encryptedText))
+        .catch((err) => reject(err));
+    });
 
-    // return new Promise((resolve, reject) => {
-    //   this.zeroKitSdk.login(zeroKitUserId)
-    //     .then((response) => resolve(response))
-    //     .catch((err) => reject(err));
-    // });
   }
 
 }
