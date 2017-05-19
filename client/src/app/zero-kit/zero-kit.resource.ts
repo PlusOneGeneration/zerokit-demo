@@ -1,10 +1,7 @@
-import {Injectable, Injector} from '@angular/core';
-import {RequestMethod, Http} from '@angular/http';
-
+import {Injectable} from '@angular/core';
+import {RequestMethod} from '@angular/http';
 import {Resource, ResourceParams, ResourceAction} from 'ngx-resource';
-
 import {ResourceMethod} from 'ngx-resource/src/Interfaces';
-
 
 @Injectable()
 @ResourceParams({

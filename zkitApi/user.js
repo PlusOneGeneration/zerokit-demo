@@ -3,8 +3,9 @@ const errors = require("./utils/errors.js");
 module.exports = function(callbackConfig = {}) {
   const userMethods = require("./methods/userMethods")(callbackConfig);
   const router = require("express").Router();
+  const User = require("./db/User");
 
-  /**
+    /**
    * Returns the zkit user id that belongs to the username in the request
    */
   router.get("/get-user-id", function(req, res, next) {
@@ -49,6 +50,13 @@ module.exports = function(callbackConfig = {}) {
     if (!validationCode) return next(errors.badInput("MissingValidationCode"));
 
     return userMethods.validateUser(userId, validationCode).then(() => res.json({}), next);
+  });
+
+  router.get('/:userId', function(req, res, next){
+      const userId = req.params.userId;
+
+      return User.findOne({ zkitId: userId })
+         .then((user) => res.json(user), (err) => next(err));
   });
 
   return {

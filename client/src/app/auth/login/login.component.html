@@ -13,19 +13,19 @@
           placeholder="Username"
           required=""
           autofocus=""
-          name="name"
-          [(ngModel)]="user.username">
+          name="userName"
+          [(ngModel)]="user.userName">
         <div #loginIframe></div>
 
         <div class="checkbox"></div>
 
         <button class="btn btn-primary btn-block" type="submit">Sign in</button>
         <button class="btn btn-link btn-block" type="button" routerLink="/auth/sign-up">Sign Up</button>
-
       </form>
-      <button (click)="idpLogin()">Idp Login</button>
-
     </div>
+
+    <div class="hidden" #zkitAuthFrame></div>
+
   </div>
 </div>
 

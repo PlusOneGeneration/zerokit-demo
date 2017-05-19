@@ -8,6 +8,7 @@ import {AuthModule} from "./auth/auth.module";
 import {ZeroKitModule} from "./zero-kit/zero-kit.module";
 import {ResourceModule} from "ngx-resource";
 import {RouterModule} from "@angular/router";
+import {UserModule} from "./user/user.module";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {RouterModule} from "@angular/router";
     ResourceModule.forRoot(),
     RouterModule.forRoot([]),
     AuthModule,
-    ZeroKitModule
+    ZeroKitModule,
+    UserModule
   ],
   providers: [],
   bootstrap: [AppComponent]
