@@ -10,12 +10,14 @@ import {ZeroKitComponent} from "./zero-kit.component";
 import {EncryptComponent} from "./encrypt/encrypt.component";
 import {FormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
+import {DecryptComponent} from "./decrypt/decrypt.component";
 
 
 @NgModule({
   declarations: [
     ZeroKitComponent,
-    EncryptComponent
+    EncryptComponent,
+    DecryptComponent
   ],
   imports: [
     BrowserModule,

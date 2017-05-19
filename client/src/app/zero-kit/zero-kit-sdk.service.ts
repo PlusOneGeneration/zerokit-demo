@@ -30,7 +30,14 @@ export class ZeroKitSdkService {
         .then((encryptedText) => resolve(encryptedText))
         .catch((err) => reject(err));
     });
+  }
 
+  decrypt(encryptedText: string): Promise<string> {
+    return new Promise((resolve, reject) => {
+      zkit_sdk.decrypt(encryptedText)
+        .then((decryptedText) => resolve(decryptedText))
+        .catch((err) => reject(err));
+    })
   }
 
 }
