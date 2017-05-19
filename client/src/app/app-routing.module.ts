@@ -5,16 +5,16 @@ import {zeroKitRoutes} from "./zero-kit/zero-kit.routing.module";
 // import {inviteRoutes} from "./invite/invite-routing.module";
 
 const routes: Routes = [
-  {path: '', redirectTo: 'app', pathMatch: 'full'},
+  // {path: '', redirectTo: 'app', pathMatch: 'full'},
   ...authRoutes,
   ...zeroKitRoutes,
-  {
-    path: 'app',
-    children: [
-      // ...applicationRoutes
-    ]
-  },
-  {path: '**', redirectTo: 'app', pathMatch: 'full'}
+  // {
+  //   path: 'app',
+  //   children: [
+  //     // ...applicationRoutes
+  //   ]
+  // },
+  // {path: '**', redirectTo: 'app', pathMatch: 'full'}
 ];
 
 @NgModule({

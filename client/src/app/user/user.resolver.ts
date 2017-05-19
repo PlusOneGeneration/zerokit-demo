@@ -13,7 +13,7 @@ export class UserResolver implements Resolve<User> {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<User> | Promise<User> | User {
-      return this.userService.user$
+    return this.userService.user$
         .subscribe((user) => {
           if (!user) {
             this.router.navigate(['auth', 'sign-in']);

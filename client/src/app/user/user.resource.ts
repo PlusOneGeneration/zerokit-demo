@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Resource, ResourceAction, ResourceMethod, ResourceParams} from "ngx-resource";
+import {Resource, ResourceAction, ResourceParams} from "ngx-resource";
 import {RequestMethod} from "@angular/http";
 import {ResourceMethod} from 'ngx-resource/src/Interfaces';
 
