@@ -5,14 +5,18 @@ import {RouterModule} from "@angular/router";
 
 import { ZeroKitService } from './zero-kit.service';
 import {ZeroKitSdkService} from "./zero-kit-sdk.service";
+import {ZeroKitRoutingModule} from "./zero-kit.routing.module";
+import {ZeroKitComponent} from "./zero-kit.component";
 
 
 @NgModule({
   declarations: [
+    ZeroKitComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot([]),
+    ZeroKitRoutingModule
   ],
   providers: [
     ZeroKitService,

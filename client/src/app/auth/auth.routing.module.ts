@@ -31,8 +31,7 @@ export const authRoutes: Routes = [
     path: '',
     redirectTo: 'auth',
     pathMatch: 'full'
-  },
-  {path: '**', redirectTo: ''}
+  }
 ];
 
 @NgModule({
