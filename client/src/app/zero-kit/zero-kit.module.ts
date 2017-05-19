@@ -11,13 +11,15 @@ import {EncryptComponent} from "./encrypt/encrypt.component";
 import {FormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {DecryptComponent} from "./decrypt/decrypt.component";
+import {ShareComponent} from "./share/share.component";
 
 
 @NgModule({
   declarations: [
     ZeroKitComponent,
     EncryptComponent,
-    DecryptComponent
+    DecryptComponent,
+    ShareComponent
   ],
   imports: [
     BrowserModule,

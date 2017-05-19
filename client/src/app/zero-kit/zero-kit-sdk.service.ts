@@ -24,7 +24,7 @@ export class ZeroKitSdkService {
     });
   }
 
-  encrypt(tresorId: string, text: string): Promise<string>{
+  encrypt(tresorId: string, text: string): Promise<string> {
     return new Promise((resolve, reject) => {
       zkit_sdk.encrypt(tresorId, text)
         .then((encryptedText) => resolve(encryptedText))
@@ -37,7 +37,15 @@ export class ZeroKitSdkService {
       zkit_sdk.decrypt(encryptedText)
         .then((decryptedText) => resolve(decryptedText))
         .catch((err) => reject(err));
-    })
+    });
+  }
+
+  shareTresor(tresorId: string, zeroKitUserId: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      zkit_sdk.shareTresor(tresorId, zeroKitUserId)
+        .then((operationId) => resolve(operationId))
+        .catch((err) => reject(err));
+    });
   }
 
 }

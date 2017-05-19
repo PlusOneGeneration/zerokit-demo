@@ -18,6 +18,9 @@
         <li>
           <a [routerLink]="['zero-kit','decrypt']" routerLinkActive="active" >Decrypt</a>
         </li>
+        <li>
+          <a [routerLink]="['zero-kit','share']" routerLinkActive="active" >Share</a>
+        </li>
       </ul>
       <p class="navbar-text pull-right" *ngIf="user">
         Signed in as <strong>{{user.userName}}</strong>

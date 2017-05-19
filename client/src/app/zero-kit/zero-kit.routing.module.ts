@@ -4,6 +4,7 @@ import { ZeroKitComponent} from "./zero-kit.component";
 import {UserResolver} from "../user/user.resolver";
 import {EncryptComponent} from "./encrypt/encrypt.component";
 import {DecryptComponent} from "./decrypt/decrypt.component";
+import {ShareComponent} from "./share/share.component";
 
 export const zeroKitRoutes: Routes = [
   {
@@ -22,6 +23,11 @@ export const zeroKitRoutes: Routes = [
       {
         path: 'decrypt',
         component: DecryptComponent,
+        resolve: {}
+      },
+      {
+        path: 'share',
+        component: ShareComponent,
         resolve: {}
       },
       {

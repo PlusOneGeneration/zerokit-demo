@@ -46,6 +46,12 @@ export class ZeroKitService {
       .toPromise();
   }
 
+  approveInviteToTresor(operationId: string): Promise<any> {
+    return this.zeroKitResource.approveInviteToTresor({operationId: operationId})
+      .$observable
+      .toPromise();
+  }
+
   logout(): Promise<any> {
     return this.zeroKitResource.logout()
       .$observable

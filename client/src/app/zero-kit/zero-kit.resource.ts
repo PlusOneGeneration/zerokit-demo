@@ -44,4 +44,10 @@ export class ZeroKitResource extends Resource {
     url: '/api/auth/logout',
   })
   logout: ResourceMethod<any, any>;
+
+  @ResourceAction({
+    method: RequestMethod.Post,
+    url: '/api/tresor/invited-user',
+  })
+  approveInviteToTresor: ResourceMethod<any, any>;
 }
