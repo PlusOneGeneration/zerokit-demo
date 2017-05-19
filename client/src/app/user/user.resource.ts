@@ -13,4 +13,10 @@ export class UserResource extends Resource {
     path: '/{!userId}',
   })
   getUserById: ResourceMethod<any, any>;
+
+  @ResourceAction({
+    method: RequestMethod.Get,
+    path: '/me',
+  })
+  getMe: ResourceMethod<any, any>;
 }

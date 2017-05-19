@@ -52,6 +52,21 @@ module.exports = function(callbackConfig = {}) {
     return userMethods.validateUser(userId, validationCode).then(() => res.json({}), next);
   });
 
+  router.get('/me', function(req, res, next){
+    try {
+        const zkitId = req.session.passport.user.zkitId;
+    } catch (ex) {
+        return res.status(401).json();
+    }
+
+    if (!zkitId) {
+        return res.status(401).json();
+    }
+
+    return User.findOne({ zkitId: zkitId })
+        .then((user) => res.json(user), (err) => next(err));
+    });
+
   router.get('/:userId', function(req, res, next){
       const userId = req.params.userId;
 

@@ -1,6 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ZeroKitService} from "../../zero-kit/zero-kit.service";
-import {ZeroKitSdkService} from "../../zero-kit/zero-kit-sdk.service";
 import {UserService} from "../../user/user.service";
 import {Router} from "@angular/router";
 
@@ -29,20 +28,15 @@ export class LoginComponent implements OnInit {
   login() {
     this.zeroKitService.login(this.user)
       .then((res) => {
-        console.log('user', res);
         this.zkitLoginForm.login(res.zkitUserId)
           .then(() => {
             this.zeroKitService.iFrameIdpAuth(this.zkitAuthFrameRef.nativeElement)
               .then((resp) => {
-                this.userService.setUser(res);
-                console.log('resp', resp);
-                console.log('auth idp success');
+                this.userService.me();
                 this.router.navigate(['zero-kit']);
-
               })
               .catch((err) => console.log('err', err));
-          })
-
+          });
       });
   }
 
