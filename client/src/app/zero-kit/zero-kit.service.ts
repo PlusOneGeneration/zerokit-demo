@@ -46,6 +46,12 @@ export class ZeroKitService {
       .toPromise();
   }
 
+  logout(): Promise<any> {
+    return this.zeroKitResource.logout()
+      .$observable
+      .toPromise();
+  }
+
   iFrameIdpAuth(element, path = ''): Promise<any> {
     return new Promise((resolve, reject) => {
       let iframe = document.createElement("iframe");

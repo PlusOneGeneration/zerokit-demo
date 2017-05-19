@@ -10,12 +10,14 @@ import {RegistrationComponent} from "./registration/registration.component";
 import {FormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {AuthRoutingModule} from "./auth.routing.module";
+import {SignOutComponent} from "./sign-out/sign-out.component";
 
 @NgModule({
   declarations: [
     AuthComponent,
     LoginComponent,
     RegistrationComponent,
+    SignOutComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +28,9 @@ import {AuthRoutingModule} from "./auth.routing.module";
     AuthRoutingModule
   ],
   providers: [AuthService],
-  exports: [AuthComponent],
+  exports: [
+    AuthComponent,
+    SignOutComponent
+  ],
 })
 export class AuthModule { }

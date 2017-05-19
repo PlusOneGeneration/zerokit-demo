@@ -29,7 +29,7 @@ export const authRoutes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'auth',
+    redirectTo: 'auth/sign-in',
     pathMatch: 'full'
   }
 ];

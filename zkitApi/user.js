@@ -53,15 +53,15 @@ module.exports = function(callbackConfig = {}) {
   });
 
   router.get('/me', function(req, res, next){
-    try {
-        const zkitId = req.session.passport.user.zkitId;
-    } catch (ex) {
-        return res.status(401).json();
-    }
+      if (!req.session.passport || !req.session.passport.user) {
+          return res.status(401).json();
+      }
 
-    if (!zkitId) {
-        return res.status(401).json();
-    }
+      const zkitId = req.session.passport.user.zkitId;
+
+      if (!zkitId) {
+          return res.status(401).json();
+      }
 
     return User.findOne({ zkitId: zkitId })
         .then((user) => res.json(user), (err) => next(err));

@@ -38,4 +38,10 @@ export class ZeroKitResource extends Resource {
     url: '/api/tresor/created',
   })
   createTresor: ResourceMethod<any, any>;
+
+  @ResourceAction({
+    method: RequestMethod.Get,
+    url: '/api/auth/logout',
+  })
+  logout: ResourceMethod<any, any>;
 }

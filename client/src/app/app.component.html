@@ -11,14 +11,18 @@
       <a class="navbar-brand" href="#">ZeroKit Demo</a>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li class="active">
+      <ul class="nav navbar-nav" *ngIf="user">
+        <li class="active" >
           <a [routerLink]="['zero-kit','encrypt']" routerLinkActive="active" >Encrypt</a>
         </li>
         <li>
           <a [routerLink]="['zero-kit','decrypt']" routerLinkActive="active" >Decrypt</a>
         </li>
       </ul>
+      <p class="navbar-text pull-right" *ngIf="user">
+        Signed in as <strong>{{user.userName}}</strong>
+        <sign-out></sign-out>
+      </p>
     </div><!--/.nav-collapse -->
   </div>
 </nav>
