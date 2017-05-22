@@ -68,13 +68,19 @@ npm run start.proxy
 
 **Project overview**
 Zerokit Demo Application included next functional:
- - registration
+ - registration 
  - IDP login
  - create tresor
  - encrypt text
  - decrypt text
  - share tresor
  
+**Screenshots**
+![Sign Up](http://joxi.ru/12M1ypNcMLlw42 "Sign Up")
+![Sign in](http://joxi.ru/KAxe0j7FMRZKNr "Sign in")
+![Encrypt](http://joxi.ru/EA4N06Zhwaovnm "Encrypt")
+![Share tresor](http://joxi.ru/52a1WRZc4vEgJ2 "Share tresor")
+
 
 
 
