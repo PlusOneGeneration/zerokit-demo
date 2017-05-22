@@ -66,5 +66,15 @@ npm install
 npm run start.proxy
 ```
 
+**Project overview**
+Zerokit Demo Application included next functional:
+ - registration
+ - IDP login
+ - create tresor
+ - encrypt text
+ - decrypt text
+ - share tresor
+ 
+
 
 
