@@ -12,10 +12,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.me()
-      .then((user) => {
-        console.log('user', user);
-        this.user = user;
-      });
+    this.userService.user$
+      .subscribe((user) => this.user = user);
   }
 }

@@ -20,7 +20,6 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit(): void {
     this.zkitRegisterForm = this.zeroKitService.getRegistrationIframe(this.zkitRegistrationRef.nativeElement);
-
   }
 
   register() {
@@ -30,7 +29,6 @@ export class RegistrationComponent implements OnInit {
 
     this.zeroKitService.register(user)
       .then((response) => {
-
         this.zkitRegisterForm.register(response.userId, response.regSessionId)
           .then((succRegResp) => {
             this.zeroKitService.registerApprove({
@@ -52,7 +50,6 @@ export class RegistrationComponent implements OnInit {
                         console.log('err +>>', err);
                       })
                   })
-
               })
               .catch((err) => {
                 console.log('err +>>', err);
