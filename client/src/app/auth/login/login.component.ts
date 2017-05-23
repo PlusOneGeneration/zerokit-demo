@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.zeroKitService.login(this.user)
+    this.zeroKitService.getUserByName(this.user)
       .then((res) => {
         this.zkitLoginForm.login(res.zkitUserId)
           .then(() => {

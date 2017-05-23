@@ -31,7 +31,7 @@ export class ZeroKitResource extends Resource {
     method: RequestMethod.Get,
     url: '/api/user/get-user-id',
   })
-  login: ResourceMethod<any, any>;
+  getUserByName: ResourceMethod<any, any>;
 
   @ResourceAction({
     method: RequestMethod.Post,

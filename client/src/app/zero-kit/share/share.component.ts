@@ -19,7 +19,8 @@ export class ShareComponent implements OnInit{
   }
 
   share(): void {
-    this.zeroKitSdkService.shareTresor(this.tresorId, this.zeroKitUserId)
+    this.zeroKitSdkService
+      .shareTresor(this.tresorId, this.zeroKitUserId)
       .then((operationId) => this.zeroKitService.approveInviteToTresor(operationId))
       .then(() => console.log('Success'))
       .catch((err) => console.error(err))
