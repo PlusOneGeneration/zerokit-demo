@@ -1,13 +1,13 @@
-#ZeroKit Demo App
+# ZeroKit Demo App
 
-##Dependencies
+## Dependencies
 - VirtualBox
 - vagrant
 - mongoDB
 - npm
 - node v7.10.0
 
-##Install
+## Install
 
 ```git clone https://github.com/PlusOneGeneration/zerokit-demo.git```
 
@@ -66,7 +66,7 @@ npm install
 npm run start.proxy
 ```
 
-##Project overview
+## Project overview
 Zerokit Demo Application included next functional:
  - registration 
  - IDP login
@@ -75,7 +75,7 @@ Zerokit Demo Application included next functional:
  - decrypt text
  - share tresor
  
-##Screenshots
+## Screenshots
 ![Sign Up](https://github.com/PlusOneGeneration/zerokit-demo/blob/master/screenshots/sign-up.png "Sign Up")
 ![Sign in](https://github.com/PlusOneGeneration/zerokit-demo/blob/master/screenshots/sign-in.png "Sign in")
 ![Encrypt](https://github.com/PlusOneGeneration/zerokit-demo/blob/master/screenshots/encrypt.png "Encrypt")
