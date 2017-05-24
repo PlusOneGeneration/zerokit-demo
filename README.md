@@ -76,10 +76,11 @@ Zerokit Demo Application included next functional:
  - share tresor
  
 **Screenshots**
-![Sign Up](http://joxi.ru/12M1ypNcMLlw42 "Sign Up")
-![Sign in](http://joxi.ru/KAxe0j7FMRZKNr "Sign in")
-![Encrypt](http://joxi.ru/EA4N06Zhwaovnm "Encrypt")
-![Share tresor](http://joxi.ru/52a1WRZc4vEgJ2 "Share tresor")
+![Sign Up](https://github.com/PlusOneGeneration/zerokit-demo/blob/master/screenshots/sign-up.png "Sign Up")
+![Sign in](https://github.com/PlusOneGeneration/zerokit-demo/blob/master/screenshots/sign-in.png "Sign in")
+![Encrypt](https://github.com/PlusOneGeneration/zerokit-demo/blob/master/screenshots/encrypt.png "Encrypt")
+![Decrypt](https://github.com/PlusOneGeneration/zerokit-demo/blob/master/screenshots/decrypt.png "Decrypt")
+![Share tresor](https://github.com/PlusOneGeneration/zerokit-demo/blob/master/screenshots/share.png "Share tresor")
 
 
 
