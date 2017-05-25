@@ -12,6 +12,9 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
+    "lodash": "^4.17.4",
+    "mongoose": "^4.10.2",
+    "passport": "^0.3.2",
     "plus.application": "^1.1.14"
   }
 }
