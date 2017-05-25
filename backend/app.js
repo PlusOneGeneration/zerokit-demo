@@ -12,8 +12,17 @@ require('plus.application')
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 
+app.use((req, res, next) => {
+    console.log(req.method + ' ' + req.url);
+    next();
+});
+
+app.use(require('./routes/router')(app));
+
+
 app.use((err, req, res, next) => {
-    console.log('[ERROR] ', err);
+    console.log('[ERROR] ', err.message);
+    console.log('[ERROR] ', err.stack);
     res.status(500).send();
 });
 

@@ -25,31 +25,31 @@ export class RegistrationComponent implements OnInit {
   register() {
     //TODO @@@dr refact it
     console.log(this.user);
-    let user = {userName: this.user.username};
+    let user = {email: this.user.username};
 
     this.zeroKitService.register(user)
       .then((response) => {
-        this.zkitRegisterForm.register(response.userId, response.regSessionId)
+        this.zkitRegisterForm.register(response.zkitId, response.registrationData.sessionId)
           .then((succRegResp) => {
             this.zeroKitService.registerApprove({
-              userId: response.userId,
+              userId: response.zkitId,
               validationVerifier: succRegResp.RegValidationVerifier
             })
               .then((success) => {
-                this.userService.getUserById(response.userId)
-                  .then((res) => {
-                    this.zeroKitService.validate({
-                      validationCode: res.registrationData.validationCode,
-                      userId: res.zkitId
-                    })
-                      .then((success) => {
+                // this.userService.getUserById(response.userId)
+                //   .then((res) => {
+                    // this.zeroKitService.validate({
+                    //   validationCode: res.registrationData.validationCode,
+                    //   userId: res.zkitId
+                    // })
+                    //   .then((success) => {
                         console.log('validated');
                         console.log('success', success);
-                      })
-                      .catch((err) => {
-                        console.log('err +>>', err);
-                      })
-                  })
+                      // })
+                      // .catch((err) => {
+                      //   console.log('err +>>', err);
+                      // })
+                  // })
               })
               .catch((err) => {
                 console.log('err +>>', err);
