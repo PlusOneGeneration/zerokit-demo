@@ -15,6 +15,7 @@
     "lodash": "^4.17.4",
     "mongoose": "^4.10.2",
     "passport": "^0.3.2",
+    "passport-openidconnect": "0.0.2",
     "plus.application": "^1.1.14"
   }
 }
