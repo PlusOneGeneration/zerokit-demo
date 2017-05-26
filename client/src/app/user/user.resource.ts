@@ -16,7 +16,8 @@ export class UserResource extends Resource {
 
   @ResourceAction({
     method: RequestMethod.Get,
-    path: '/me',
+    url: '/api/auth/me',
+    // path: '/me',
   })
   getMe: ResourceMethod<any, any>;
 }

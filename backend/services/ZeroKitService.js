@@ -58,7 +58,6 @@ module.exports = class ZeroKitService {
     }
 
     initUserRegistration() {
-        console.log('initUserRegistration');
         return this.adminApiCall('/user/init-user-registration', {});
     }
 

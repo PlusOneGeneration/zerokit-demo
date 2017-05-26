@@ -12,7 +12,7 @@ export const zeroKitRoutes: Routes = [
     component: ZeroKitComponent,
     resolve: {
       //TODO @@@dr return resolver
-      user: UserResolver
+      // user: UserResolver
     },
     children: [
       {

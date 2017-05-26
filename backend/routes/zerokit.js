@@ -5,10 +5,6 @@ module.exports = (app) => {
     const UserService = app.container.get('UserService');
     const ZeroKitService = app.container.get('ZeroKitService');
 
-    router.get('/', (req, res, next) => {
-
-    });
-
     router.post('/init-user-registration', (req, res, next) => {
         let email = req.body.email;
 
@@ -63,6 +59,16 @@ module.exports = (app) => {
 
     router.post('/validate-user', (req, res, next) => {
 
+    });
+
+    router.get('/get-user-id', (req, res, next) => {
+        // console.log('req.body.email', req.query.userName);
+       return UserService.getByEmail(req.query.userName)
+           .then((user) => {
+           // console.log('user ', user);
+                   res.json({zkitUserId: user.zkitId});
+               },
+               (err) => next(err));
     });
     //
     // router.put('/', (req, res, next) => {

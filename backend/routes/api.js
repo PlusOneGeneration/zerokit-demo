@@ -5,6 +5,7 @@ module.exports = (app) => {
     // const SampleService = app.container.get('SampleService');
 
     router.use('/zerokit', require('./zerokit')(app));
+    router.use('/auth', require('./auth')(app));
 
     return router;
 }
