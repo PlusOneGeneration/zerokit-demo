@@ -61,7 +61,7 @@ export class ZeroKitService {
   iFrameIdpAuth(element, path = ''): Promise<any> {
     return new Promise((resolve, reject) => {
       let iframe = document.createElement("iframe");
-      iframe.className = "hidden";
+      // iframe.className = "hidden";
       element.appendChild(iframe);
 
       iframe.onload = function () {
@@ -76,7 +76,8 @@ export class ZeroKitService {
       };
       //TODO @@@dr add config
       // Set the iframe to the idp login url on the backend
-      iframe.src = "http://localhost:3000/api/auth/login?clientId=" + "s7g8gjvuj7_8XWEmNCNox" + "&reto=" + "http://localhost:3000/";
+      // iframe.src = "http://localhost:3000/api/auth/login?clientId=" + "s7g8gjvuj7_8XWEmNCNox" + "&reto=" + "http://localhost:3000/";
+      iframe.src = "http://localhost:3000/api/auth/login?clientId=" + "s7g8gjvuj7_8XWEmNCNox";
 
       console.log('iframe', iframe);
     });

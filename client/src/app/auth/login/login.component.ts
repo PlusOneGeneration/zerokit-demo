@@ -33,8 +33,9 @@ export class LoginComponent implements OnInit {
           // location.href = "http://localhost:3000/api/auth/login?clientId=s7g8gjvuj7_8XWEmNCNox&reto=http://localhost:3000/auth/sign-up";
             this.zeroKitService.iFrameIdpAuth(this.zkitAuthFrameRef.nativeElement)
               .then((resp) => {
-                this.userService.me();
-                this.router.navigate(['zero-kit']);
+              console.log(resp);
+                // this.userService.me();
+                // this.router.navigate(['zero-kit']);
               })
               .catch((err) => console.log('err', err));
           });
