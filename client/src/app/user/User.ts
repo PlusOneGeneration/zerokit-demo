@@ -1,5 +1,5 @@
 export class User {
-  // id: string;
-
-  constructor() {}
+  _id: string;
+  email: string;
+  zkitId: string;
 }

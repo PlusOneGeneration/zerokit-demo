@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
             this.zeroKitService.iFrameIdpAuth(this.zkitAuthFrameRef.nativeElement)
               .then((resp) => {
                 this.userService.me();
-                this.router.navigate(['zero-kit']);
+                this.router.navigate(['messenger']);
               })
               .catch((err) => console.log('err', err));
           });

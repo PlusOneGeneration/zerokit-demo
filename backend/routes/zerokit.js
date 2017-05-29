@@ -30,7 +30,7 @@ module.exports = (app) => {
         const userVerifier = req.body.validationVerifier;
 
         // return UserService.getByQuery({zkitId: userId, state: 0})
-        return UserService.getByQuery({zkitId: userId})
+        return UserService.getOneByQuery({zkitId: userId})
             .then((user) => {
                 if (!user) {
                     return res.status(404).json({errorMessage: 'User not found'});

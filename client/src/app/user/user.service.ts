@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {UserResource} from "./user.resource";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {Observable} from "rxjs/Observable";
+import {User} from "./User";
 
 @Injectable()
 export class UserService {
@@ -11,6 +12,12 @@ export class UserService {
 
   getUserById(userId: any): Promise<any> {
     return this.userResource.getUserById({userId: userId})
+      .$observable
+      .toPromise();
+  }
+
+  getUsers(): Promise<User[]> {
+    return this.userResource.getUsers()
       .$observable
       .toPromise();
   }
