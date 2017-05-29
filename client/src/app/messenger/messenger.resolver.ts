@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {Resolve, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
 import {Observable, BehaviorSubject} from "rxjs";
 
-import { MessengerService } from './messenger.service';
 import { Messenger } from './Messenger';
 
 @Injectable()

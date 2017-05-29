@@ -5,8 +5,11 @@ import { MessengerRoutingModule} from "./messenger.routing.module";
 import {RouterModule} from "@angular/router";
 
 import { MessengerComponent } from './messenger.component';
-import { MessengerService } from './messenger.service';
+import {MessageService} from './services/message.service';
 import {UserListComponent} from "./user-list/user-list.component";
+import {MessageResource} from "./resources/message.resource";
+import {RoomService} from "./services/room.service";
+import {RoomResource} from "./resources/room.resource";
 
 
 @NgModule({
@@ -19,7 +22,12 @@ import {UserListComponent} from "./user-list/user-list.component";
     RouterModule.forRoot([]),
     MessengerRoutingModule
   ],
-  providers: [MessengerService],
+  providers: [
+    MessageService,
+    MessageResource,
+    RoomService,
+    RoomResource
+  ],
   exports: [MessengerComponent],
   // bootstrap: [MessengerComponent]
 })

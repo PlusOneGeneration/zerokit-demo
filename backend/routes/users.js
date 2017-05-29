@@ -9,9 +9,9 @@ module.exports = (app) => {
         next();
 
     });
-
+    //TODO @@@dr add auth validation
     router.get('/me', (req, res, next) => {
-        res.json(req.session.user);
+        res.json(req.session.passport.user);
     });
 
     router.get('/', (req, res, next) => {
