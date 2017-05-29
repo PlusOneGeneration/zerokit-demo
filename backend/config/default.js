@@ -1,4 +1,4 @@
-const idpBaseUrl = 'https://s7g8gjvuj7.api.tresorit.io';
+const idpBaseUrl = 'https://s7g8gjvuj7.api.tresorit.io/idp';
 
 module.exports = {
     port: 3000,
@@ -17,14 +17,9 @@ module.exports = {
             }
         ]
     },
-
     openIdPassport: {
         clientID: 's7g8gjvuj7_8XWEmNCNox',
         clientSecret: 's7g8gjvuj7_dpnIwFp7i3qpUwIh',
-        // authorizationURL: zeroKitIDP + '/connect/authorize',
-        // tokenURL: zeroKitIDP + '/connect/token',
-        // callbackURL: appHost + '/auth/open-id-connect/callback',
-        // userInfoURL: zeroKitIDP + '/connect/userInfo'
         authorizationURL: `${idpBaseUrl}/connect/authorize`,
         tokenURL: `${idpBaseUrl}/connect/token`,
         callbackURL:  `http://localhost:3000/api/auth/callback`,

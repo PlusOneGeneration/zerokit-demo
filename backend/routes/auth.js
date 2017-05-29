@@ -5,19 +5,7 @@ module.exports = (app) => {
     const Strategy = require('passport-openidconnect').Strategy;
     const UserService = app.container.get('UserService');
 
-    const idpBaseUrl = 'https://s7g8gjvuj7.api.tresorit.io';
-
-    passport.use(new Strategy({
-            clientID: 's7g8gjvuj7_8XWEmNCNox',
-            clientSecret: 's7g8gjvuj7_dpnIwFp7i3qpUwIh',
-            authorizationURL: `${idpBaseUrl}/connect/authorize`,
-            tokenURL: `${idpBaseUrl}/connect/token`,
-            callbackURL: `http://localhost:3000/api/auth/callback`,
-            userInfoURL: `${idpBaseUrl}/connect/userInfo`,
-            issuer: `${idpBaseUrl}`,
-            prompt: "none",
-            scope: "profile"
-        },
+    passport.use(new Strategy(app.config.get('openIdPassport'),
         (token, tokenSecret, profile, cb) => {
             console.log('profile =>>', profile);
             return cb(null, profile)
