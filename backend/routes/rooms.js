@@ -18,9 +18,20 @@ module.exports = (app) => {
         return next();
     });
 
-    // router.param('paramId', (id, req, res, next) => {
-    //    
-    // });
+    router.param('roomId', (id, req, res, next) => {
+        RoomService.getRoomById(id)
+            .then(
+                (room) => {
+                    if (!room) {
+                        return res.status(404).send();
+                    }
+
+                    req.Room = room;
+                    next();
+                },
+                (err) => next(err)
+            );
+    });
 
     router.get('/users/:userId', (req, res, next) => {
         const users = [req.user._id, req.params.userId];
@@ -44,14 +55,8 @@ module.exports = (app) => {
                 res.json(room);
             }, (err) => next(err));
     });
-    //
-    // router.put('/', (req, res, next) => {
-    //
-    // });
-    //
-    // router.delete('/', (req, res, next) => {
-    //
-    // });
+
+    router.use('/:roomId/messages', require('rooms-messages')(app));
 
     return router;
 }

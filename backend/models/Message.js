@@ -3,8 +3,8 @@ module.exports = (mongoose) => {
 
     const messageSchema = new Schema({
         text: String,
-        author: {type: Schema.Types.ObjectId, ref: 'User'},
-        recipient: {type: Schema.Types.ObjectId, ref: 'User'},
+        fromUser: {type: Schema.Types.ObjectId, ref: 'User'},
+        toUser: {type: Schema.Types.ObjectId, ref: 'User'},
         room: {type: Schema.Types.ObjectId, ref: 'Room'},
         tresorId: String,
         messageShared: {type: Boolean, default: false},
