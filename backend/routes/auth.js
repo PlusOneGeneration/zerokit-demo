@@ -29,26 +29,10 @@ module.exports = (app) => {
         ((req, res, next) => res.json())
     );
 
-
-    // router.param('paramId', (id, req, res, next) => {
-    //    
-    // });
-
-    // router.get('/', (req, res, next) => {
-    //    
-    // });
-    //
-    // router.post('/', (req, res, next) => {
-    //
-    // });
-    //
-    // router.put('/', (req, res, next) => {
-    //
-    // });
-    //
-    // router.delete('/', (req, res, next) => {
-    //
-    // });
+    router.get('/logout', (req, res, next) => {
+        req.logOut();
+        res.json();
+    });
 
     return router;
 }

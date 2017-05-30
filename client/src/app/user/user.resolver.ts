@@ -16,6 +16,7 @@ export class UserResolver implements Resolve<User> {
     //TODO @@@dr rethink it
     return this.userService.me()
       .then((user) => {
+
         if (!user) {
           this.router.navigate(['auth', 'sign-in']);
         }

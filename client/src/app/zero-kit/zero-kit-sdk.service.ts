@@ -56,4 +56,12 @@ export class ZeroKitSdkService {
     });
   }
 
+  logout(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      zkit_sdk.logout()
+        .then(() => resolve())
+        .catch((err) => reject(err));
+    })
+  }
+
 }

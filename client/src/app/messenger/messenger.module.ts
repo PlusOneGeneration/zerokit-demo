@@ -12,6 +12,7 @@ import {MessageResource} from "./resources/message.resource";
 import {RoomService} from "./services/room.service";
 import {RoomResource} from "./resources/room.resource";
 import {MessagesComponent} from "./messages/messages.component";
+import {UiModule} from "../ui/ui.module";
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {MessagesComponent} from "./messages/messages.component";
     BrowserModule,
     RouterModule.forRoot([]),
     MessengerRoutingModule,
-    FormsModule
+    FormsModule,
+    UiModule
   ],
   providers: [
     MessageService,

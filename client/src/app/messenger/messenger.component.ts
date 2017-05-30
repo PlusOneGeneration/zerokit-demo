@@ -12,11 +12,13 @@ import {Room} from "./models/Room";
 })
 export class MessengerComponent {
   room: Room;
+  loading: boolean = false;
 
   constructor(private roomService: RoomService) {
   }
 
   ngOnInit(): void {
+    this.loading = true;
     this.roomService.roomWithUser$
       .subscribe((user) => {
         console.log('user with =>>', user);
@@ -28,6 +30,7 @@ export class MessengerComponent {
                 return this.roomService.createRoom(user)
                   .then((createdRoom) => {
                     this.room = createdRoom;
+                    this.loading = false;
                   });
               }
 
