@@ -22,7 +22,7 @@ module.exports = (app) => {
     const messageForm = form(
         form.field('text').trim().required(),
         // form.field('fromUser').trim().required(),
-        form.field('toUser').trim().required(),
+        form.field('toUser').trim().required()
     );
 
     router.get('/', (req, res, next) => {
@@ -36,18 +36,10 @@ module.exports = (app) => {
     router.post('/', messageForm, validate, (req, res, next) => {
         MessageService.createMessage(req.Room, req.user, req.form)
             .then(
-                (message) => req.json(message),
+                (message) => res.json(message),
                 (err) => next(err)
             );
     });
-    //
-    // router.put('/', (req, res, next) => {
-    //
-    // });
-    //
-    // router.delete('/', (req, res, next) => {
-    //
-    // });
 
     return router;
 }

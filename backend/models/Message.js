@@ -8,7 +8,7 @@ module.exports = (mongoose) => {
         room: {type: Schema.Types.ObjectId, ref: 'Room'},
         tresorId: String,
         messageShared: {type: Boolean, default: false},
-        date: {type: Date, delete: Date.now},
+        date: {type: Date, default: Date.now}
     });
 
     return mongoose.model('Message', messageSchema);

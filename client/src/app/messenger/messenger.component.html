@@ -5,7 +5,7 @@
       <user-list></user-list>
     </div>
     <div class="col-md-9 col-sm-8">
-      <h3>Messages</h3>
+      <messages *ngIf="room"></messages>
     </div>
   </div>
   <router-outlet></router-outlet>

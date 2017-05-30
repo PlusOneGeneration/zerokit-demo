@@ -18,8 +18,8 @@ module.exports = (app) => {
         return next();
     });
 
-    router.param('roomId', (id, req, res, next) => {
-        RoomService.getRoomById(id)
+    router.param('roomId', (req, res, next, roomId) => {
+        RoomService.getRoomById(roomId)
             .then(
                 (room) => {
                     if (!room) {
@@ -45,18 +45,16 @@ module.exports = (app) => {
 
                 res.json(room);
             });
-
     });
 
     router.post('/', roomForm, validate, (req, res, next) => {
         RoomService.createRoom([req.user._id, req.form.user])
             .then((room) => {
-                console.log("ROOM", room);
                 res.json(room);
             }, (err) => next(err));
     });
 
-    router.use('/:roomId/messages', require('rooms-messages')(app));
+    router.use('/:roomId/messages', require('./rooms-messages')(app));
 
     return router;
 }

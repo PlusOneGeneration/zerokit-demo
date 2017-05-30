@@ -63,12 +63,15 @@ module.exports = (app) => {
 
     router.get('/get-user-id', (req, res, next) => {
         // console.log('req.body.email', req.query.userName);
-       return UserService.getByEmail(req.query.userName)
-           .then((user) => {
-           // console.log('user ', user);
-                   res.json({zkitUserId: user.zkitId});
-               },
-               (err) => next(err));
+        return UserService.getByEmail(req.query.userName)
+            .then((user) => {
+                    if (!user) {
+                        return res.status(404).send();
+                    }
+                    // console.log('user ', user);
+                    res.json({zkitUserId: user.zkitId});
+                },
+                (err) => next(err));
     });
     //
     // router.put('/', (req, res, next) => {

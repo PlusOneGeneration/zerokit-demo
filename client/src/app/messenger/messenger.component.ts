@@ -44,6 +44,7 @@ export class MessengerComponent {
         .then((room) => {
           console.log('open room', room);
           this.room = room;
+          this.roomService.currentRoom$.next(room);
           resolve(room);
         })
         .catch((err) => {

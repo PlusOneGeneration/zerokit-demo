@@ -18,8 +18,8 @@ module.exports = class MessageService {
 
     getMessagesByRoom(room) {
         return this.Message
-            .findOne({room: room._id})
-            .populate('user')
+            .find({room: room._id})
+            .populate('fromUser')
             .populate('room')
             .exec();
     }
