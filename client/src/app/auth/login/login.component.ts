@@ -12,6 +12,7 @@ import {Router} from "@angular/router";
 export class LoginComponent implements OnInit {
   user: any = {userName: ''};
   zkitLoginForm: any;
+  loading: boolean = false;
 
   @ViewChild('loginIframe') zkitLoginRef: ElementRef;
   @ViewChild('zkitAuthFrame') zkitAuthFrameRef: ElementRef;
@@ -26,6 +27,8 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.loading = true;
+
     this.zeroKitService.getUserByName(this.user)
       .then((res) => {
         this.zkitLoginForm.login(res.zkitUserId)
@@ -33,6 +36,7 @@ export class LoginComponent implements OnInit {
             this.zeroKitService.iFrameIdpAuth(this.zkitAuthFrameRef.nativeElement)
               .then((resp) => {
                 this.userService.me();
+                this.loading = false;
                 this.router.navigate(['messenger']);
               })
               .catch((err) => console.log('err', err));

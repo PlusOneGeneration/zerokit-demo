@@ -3,12 +3,15 @@ import {UserResource} from "./user.resource";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
 import {Observable} from "rxjs/Observable";
 import {User} from "./User";
+import {ZeroKitSdkService} from "../zero-kit/zero-kit-sdk.service";
 
 @Injectable()
 export class UserService {
   user$: BehaviorSubject<any> = new BehaviorSubject(null);
 
-  constructor(private userResource: UserResource) {}
+  constructor(private userResource: UserResource,
+              private zeroKitSdkService: ZeroKitSdkService) {
+  }
 
   getUserById(userId: any): Promise<User> {
     return this.userResource.getUserById({userId: userId})
@@ -27,13 +30,28 @@ export class UserService {
       if (!this.user$.getValue()) {
         this.getMe().subscribe(
           (user) => {
-            this.user$.next(user);
-            resolve(user);
+            return this.zeroKitSdkService.getCurrentUserInSession()
+              .then((zkitUserId) => {
+                if (user.zkitId == zkitUserId) {
+                  this.user$.next(user);
+                  resolve(user);
+                }
+              })
+              .catch((err) => reject(err));
           },
           (err) => reject(err)
         );
       } else {
-        resolve(this.user$.getValue());
+        return this.zeroKitSdkService.getCurrentUserInSession()
+          .then((zkitUserId) => {
+            const user = this.user$.getValue();
+
+            if (user.zkitId == zkitUserId) {
+              this.user$.next(user);
+              resolve(user);
+            }
+          })
+          .catch((err) => reject(err));
       }
     });
   }

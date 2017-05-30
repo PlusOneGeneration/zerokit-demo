@@ -48,4 +48,12 @@ export class ZeroKitSdkService {
     });
   }
 
+  getCurrentUserInSession(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      zkit_sdk.whoAmI()
+        .then((zkitUserId) => resolve(zkitUserId))
+        .catch((err) => reject(err));
+    });
+  }
+
 }

@@ -11,6 +11,7 @@ import {FormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {AuthRoutingModule} from "./auth.routing.module";
 import {SignOutComponent} from "./sign-out/sign-out.component";
+import {UiModule} from "../ui/ui.module";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {SignOutComponent} from "./sign-out/sign-out.component";
     FormsModule,
     CommonModule,
     RouterModule.forRoot([]),
-    AuthRoutingModule
+    AuthRoutingModule,
+    UiModule
   ],
   providers: [AuthService],
   exports: [
