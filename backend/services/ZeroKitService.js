@@ -70,6 +70,14 @@ module.exports = class ZeroKitService {
         });
     }
 
+    createTresor(tresorId) {
+        return this.adminApiCall("/tresor/approve-tresor-creation", {TresorId: tresorId});
+    }
+
+    approveInviteToTresor(operationId) {
+        return this.adminApiCall("/tresor/approve-share", { OperationId: operationId });
+    }
+
     finishUserRegistration(userId, userVerifier) {
 
     }

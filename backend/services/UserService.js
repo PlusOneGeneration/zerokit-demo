@@ -29,6 +29,10 @@ module.exports = class UserService {
         return this.User.findOne({email: email});
     }
 
+    getById(userId) {
+        return this.User.findById(userId);
+    }
+
     getByZeroKitId(zeroKitId) {
         return this.User.findOne({zkitId: zeroKitId});
     }

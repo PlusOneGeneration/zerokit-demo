@@ -1,9 +1,28 @@
 module.exports = (app) => {
     const express = require('express');
     const router = express.Router();
+    const form = require('express-form');
+
 
     const UserService = app.container.get('UserService');
     const ZeroKitService = app.container.get('ZeroKitService');
+
+    const createTresorForm = form(
+        form.field('tresorId').trim().required()
+    );
+
+    const approveShareForm = form(
+        form.field('operationId').trim().required()
+    );
+
+    //TODO @@@dr move it to FormService
+    const validate = ((req, res, next) => {
+        if (!req.form.isValid) {
+            return res.status(400).send(req.form.getErrors());
+        }
+
+        return next();
+    });
 
     router.post('/init-user-registration', (req, res, next) => {
         let email = req.body.email;
@@ -72,6 +91,19 @@ module.exports = (app) => {
                     res.json({zkitUserId: user.zkitId});
                 },
                 (err) => next(err));
+    });
+
+    router.post('/tresor', createTresorForm, validate, (req, res, next) => {
+        return ZeroKitService.createTresor(req.form.tresorId)
+            .then(() => res.json());
+    });
+    
+    router.post('/tresor/invite/approve', approveShareForm, validate, (req, res, next) => {
+        return ZeroKitService.approveInviteToTresor(req.form.operationId)
+            .then(
+                () => res.json(),
+                (err) => next(err)
+            );
     });
     //
     // router.put('/', (req, res, next) => {

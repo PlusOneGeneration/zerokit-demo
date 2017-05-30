@@ -36,7 +36,7 @@ export class ZeroKitResource extends Resource {
 
   @ResourceAction({
     method: RequestMethod.Post,
-    url: '/api/tresor/created',
+    url: '/api/zerokit/tresor',
   })
   createTresor: ResourceMethod<any, any>;
 
@@ -48,7 +48,7 @@ export class ZeroKitResource extends Resource {
 
   @ResourceAction({
     method: RequestMethod.Post,
-    url: '/api/tresor/invited-user',
+    url: '/api/zerokit/tresor/invite/approve',
   })
   approveInviteToTresor: ResourceMethod<any, any>;
 }

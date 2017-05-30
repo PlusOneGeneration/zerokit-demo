@@ -17,7 +17,8 @@ export class MessagesComponent implements OnInit{
 
   ngOnInit(): void {
     this.messageService
-      .getMessagesByRoom(this.roomService.currentRoom$.getValue())
+      // .getMessagesByRoom(this.roomService.currentRoom$.getValue())
+      .readMessages(this.roomService.currentRoom$.getValue())
         .then((messages) => this.messages = messages);
   }
 

@@ -5,6 +5,8 @@ export class Message {
   fromUser?: User|string;
   toUser: User|string;
   text: string = '';
+  decryptedText?: string;
   room?: string;
+  tresorId: string;
   date?: Date;
 }

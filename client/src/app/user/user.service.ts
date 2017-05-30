@@ -10,7 +10,7 @@ export class UserService {
 
   constructor(private userResource: UserResource) {}
 
-  getUserById(userId: any): Promise<any> {
+  getUserById(userId: any): Promise<User> {
     return this.userResource.getUserById({userId: userId})
       .$observable
       .toPromise();
