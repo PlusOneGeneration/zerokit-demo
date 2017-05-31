@@ -22,41 +22,15 @@ export class MessengerComponent {
     this.roomService.roomWithUser$
       .subscribe((user) => {
         if (user) {
-          this.openRoom(user)
+          this.roomService.getUserRoom(user)
             .then((room) => {
-              if (!room) {
-                return this.roomService.createRoom(user)
-                  .then((createdRoom) => {
-                    this.roomService.currentRoom$.next(createdRoom);
-                    this.room = createdRoom;
-                    this.loading = false;
-                  });
-              }
-
               this.room = room;
               this.loading = false;
-            });
+            })
+            .catch((err) => this.loading = false)
         }
+
         this.loading = false;
       });
-  }
-
-  openRoom(user: User): Promise<Room> {
-    return new Promise((resolve, reject) => {
-      this.roomService.getRoomByUser(user)
-        .then((room) => {
-          this.room = room;
-          this.roomService.currentRoom$.next(room);
-          resolve(room);
-        })
-        .catch((err) => {
-          console.log('err', err);
-          if (err.status === 404) {
-            return resolve(null);
-          }
-
-          reject(err);
-        });
-    });
   }
 }
