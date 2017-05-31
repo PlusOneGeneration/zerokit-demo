@@ -1,6 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ZeroKitService} from "../../zero-kit/zero-kit.service";
 import {UserService} from "../../user/user.service";
+import {Router} from "@angular/router";
 
 //TODO @@@dr rename registration to sign up
 @Component({
@@ -11,11 +12,13 @@ import {UserService} from "../../user/user.service";
 export class RegistrationComponent implements OnInit {
   user: any = {login: '', password: ''};
   zkitRegisterForm: any;
+  loading: boolean = false;
 
   @ViewChild('registrationIframe') zkitRegistrationRef: ElementRef;
 
   constructor(private zeroKitService: ZeroKitService,
-              private userService: UserService) {
+              private userService: UserService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -23,6 +26,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   register() {
+    this.loading = true;
     //TODO @@@dr refact it
     console.log(this.user);
     let user = {email: this.user.username};
@@ -36,23 +40,15 @@ export class RegistrationComponent implements OnInit {
               validationVerifier: succRegResp.RegValidationVerifier
             })
               .then((success) => {
-                // this.userService.getUserById(response.userId)
-                //   .then((res) => {
-                    // this.zeroKitService.validate({
-                    //   validationCode: res.registrationData.validationCode,
-                    //   userId: res.zkitId
-                    // })
-                    //   .then((success) => {
-                        console.log('validated');
-                        console.log('success', success);
-                      // })
-                      // .catch((err) => {
-                      //   console.log('err +>>', err);
-                      // })
-                  // })
+                console.log('validated');
+                console.log('success', success);
+                this.loading = false;
+
+                this.router.navigate(['auth', 'sign-in']);
               })
               .catch((err) => {
                 console.log('err +>>', err);
+                this.loading = false;
               })
 
           })
