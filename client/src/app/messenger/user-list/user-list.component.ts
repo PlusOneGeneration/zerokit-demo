@@ -9,6 +9,7 @@ import {RoomService} from "../services/room.service";
 })
 export class UserListComponent implements OnInit {
   users: User[] = [];
+  selectedUser: User;
 
   constructor(private userService: UserService,
               private roomService: RoomService) {
@@ -26,6 +27,14 @@ export class UserListComponent implements OnInit {
     this.userService.getUsers()
       .then((users) => this.users = users)
       .catch((err) => console.log(err));
+
+    this.roomService.roomWithUser$
+        .subscribe((user) => {
+          if (user) {
+            this.selectedUser = user;
+          }
+        });
+
   }
 
   selectUser(user): void {
