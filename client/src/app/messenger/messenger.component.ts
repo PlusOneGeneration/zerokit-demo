@@ -34,8 +34,10 @@ export class MessengerComponent {
               }
 
               this.room = room;
+              this.loading = false;
             });
         }
+        this.loading = false;
       });
   }
 

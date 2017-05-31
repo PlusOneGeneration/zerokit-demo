@@ -15,6 +15,14 @@ export class UserListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userService.me()
+      .then((me) => {
+        this.userService.getUsers()
+          .then((users) => users.filter((user) => user._id !== me._id))
+          .then((users) => this.users = users)
+          .catch((err) => console.log(err));
+      })
+
     this.userService.getUsers()
       .then((users) => this.users = users)
       .catch((err) => console.log(err));
