@@ -16,7 +16,7 @@ export class MessageService {
 
   sendMessage(message: Message): Promise<Message> {
     return this.shareMessageAccess(message)
-      .then((message) => this.zeroKitSdkService.encrypt(message.tresorId, message.text))
+      .then((message) => this.zeroKitSdkService.encrypt(message.tresorId, message.decryptedText))
       .then((encryptedText) => {
         message.text = encryptedText as string;
         return message;

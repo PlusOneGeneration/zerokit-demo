@@ -5,7 +5,6 @@ module.exports = class RoomService {
 
     createRoom(users) {
         const room = new this.Room({users: users});
-        console.log('room 2', room);
         return room.save();
     }
 
@@ -15,7 +14,7 @@ module.exports = class RoomService {
 
     getRoomByUsers(users) {
         return this.Room.findOne({
-            users: {$in: users}
+            users: {$all: users}
         });
     }
 }

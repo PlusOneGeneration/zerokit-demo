@@ -21,21 +21,19 @@ export class MessengerComponent {
     this.loading = true;
     this.roomService.roomWithUser$
       .subscribe((user) => {
-        console.log('user with =>>', user);
-
         if (user) {
           this.openRoom(user)
             .then((room) => {
               if (!room) {
                 return this.roomService.createRoom(user)
                   .then((createdRoom) => {
+                    this.roomService.currentRoom$.next(createdRoom);
                     this.room = createdRoom;
                     this.loading = false;
                   });
               }
 
               this.room = room;
-              console.log('room', this.room);
             });
         }
       });
@@ -45,7 +43,6 @@ export class MessengerComponent {
     return new Promise((resolve, reject) => {
       this.roomService.getRoomByUser(user)
         .then((room) => {
-          console.log('open room', room);
           this.room = room;
           this.roomService.currentRoom$.next(room);
           resolve(room);
@@ -58,7 +55,6 @@ export class MessengerComponent {
 
           reject(err);
         });
-    })
-
+    });
   }
 }
