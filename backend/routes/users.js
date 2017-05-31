@@ -21,7 +21,7 @@ module.exports = (app) => {
     });
     //TODO @@@dr add auth validation
     router.get('/me', (req, res, next) => {
-        if(Object.keys(req.session.passport).length == 0){
+        if(!req.session.passport || Object.keys(req.session.passport).length == 0){
             return res.status(401).json();
         }
 
