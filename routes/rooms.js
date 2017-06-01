@@ -4,19 +4,11 @@ module.exports = (app) => {
     const form = require('express-form');
 
     const RoomService = app.container.get('RoomService');
+    const FormService = app.container.get('FormService');
 
-    const roomForm = form(
-        form.field('user').trim().required()
+    const roomForm = FormService.create(
+        FormService.field('user').trim().required()
     );
-
-    //TODO @@@dr move it to FormService
-    const validate = ((req, res, next) => {
-        if (!req.form.isValid) {
-            return res.status(400).send(req.form.getErrors());
-        }
-
-        return next();
-    });
 
     router.param('roomId', (req, res, next, roomId) => {
         RoomService.getRoomById(roomId)
@@ -47,7 +39,7 @@ module.exports = (app) => {
             });
     });
 
-    router.post('/', roomForm, validate, (req, res, next) => {
+    router.post('/', roomForm, (req, res, next) => {
         RoomService.createRoom([req.user._id, req.form.user])
             .then((room) => {
                 res.json(room);
