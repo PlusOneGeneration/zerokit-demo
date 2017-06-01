@@ -1,5 +1,5 @@
 export class User {
   _id: string;
-  email: string;
+  email: string = '';
   zkitId: string;
 }

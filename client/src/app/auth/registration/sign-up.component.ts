@@ -2,6 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ZeroKitService} from "../../zero-kit/zero-kit.service";
 import {Router} from "@angular/router";
 import {ZeroKitSdkService} from "../../zero-kit/zero-kit-sdk.service";
+import {User} from "../../user/User";
 
 @Component({
   selector: 'sign-up',
@@ -9,7 +10,7 @@ import {ZeroKitSdkService} from "../../zero-kit/zero-kit-sdk.service";
 })
 
 export class SignUpComponent implements OnInit {
-  user: any = {login: '', password: ''};
+  user: User = new User;
   zkitRegisterForm: any;
   loading: boolean = false;
 
@@ -24,32 +25,20 @@ export class SignUpComponent implements OnInit {
     this.zkitRegisterForm = this.zeroKitSdkService.getRegistrationIframe(this.zkitRegistrationRef.nativeElement);
   }
 
-  signUp() {
+  signUp(): void {
     this.loading = true;
-    //TODO @@@dr refact it
-    console.log(this.user);
-    let user = {email: this.user.username};
 
-    this.zeroKitService.register(user)
-      .then((response) => {
-        this.zkitRegisterForm.register(response.zkitId, response.registrationData.sessionId)
-          .then((succRegResp) => {
-            this.zeroKitService.registerApprove({
-              userId: response.zkitId,
-              validationVerifier: succRegResp.RegValidationVerifier
-            })
-              .then((success) => {
-                console.log('validated');
-                console.log('success', success);
-                this.loading = false;
-
-                this.router.navigate(['auth', 'sign-in']);
-              })
-              .catch((err) => {
-                console.log('err +>>', err);
-                this.loading = false;
-              })
-          })
+    this.zeroKitService.register(this.user)
+      .then((user) => {
+        return this.zkitRegisterForm.register(user.zkitId, user.registrationData.sessionId)
+          .then((succRegResp) => ({zkitId: user.zkitId, validationVerifier: succRegResp.RegValidationVerifier}))
+          .then((zkitData) => this.zeroKitService.registerApprove(zkitData))
+          .then(() => this.loading = false)
+          .then(() => this.router.navigate(['auth', 'sign-in']))
+      })
+      .catch((err) => {
+        console.error('err +>>', err);
+        this.loading = false;
       })
   }
 

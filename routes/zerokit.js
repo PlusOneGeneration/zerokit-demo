@@ -8,6 +8,15 @@ module.exports = (app) => {
     const FormService = app.container.get('FormService');
     const AuthService = app.container.get('AuthService');
 
+    const initRegistrationForm = FormService.create(
+        FormService.field('email').trim().required()
+    );
+
+    const finishRegistrationForm = FormService.create(
+        FormService.field('zkitId').trim().required(),
+        FormService.field('validationVerifier').trim().required()
+    );
+
     const createTresorForm = FormService.create(
         FormService.field('tresorId').trim().required()
     );
@@ -16,8 +25,8 @@ module.exports = (app) => {
         FormService.field('operationId').trim().required()
     );
 
-    router.post('/init-user-registration', (req, res, next) => {
-        let email = req.body.email;
+    router.post('/init-user-registration', initRegistrationForm, (req, res, next) => {
+        let email = req.form.email;
 
         UserService.getByEmail(email)
             .then((user) => {
@@ -35,11 +44,11 @@ module.exports = (app) => {
             .catch((err) => next(err));
     });
 
-    router.post('/finish-user-registration', (req, res, next) => {
-        const userId = req.body.userId;
-        const userVerifier = req.body.validationVerifier;
+    router.post('/finish-user-registration', finishRegistrationForm, (req, res, next) => {
+        const zkitUserId = req.form.zkitId;
+        const userVerifier = req.form.validationVerifier;
 
-        return UserService.getOneByQuery({zkitId: userId})
+        return UserService.getOneByQuery({zkitId: zkitUserId})
             .then((user) => {
                 if (!user) {
                     return res.status(404).json({errorMessage: 'User not found'});
@@ -52,7 +61,7 @@ module.exports = (app) => {
                     .then(() => {
                         return ZeroKitService
                             .approveUserRegistration(
-                                userId,
+                                zkitUserId,
                                 user.registrationData.sessionId,
                                 user.registrationData.sessionVerifier,
                                 userVerifier

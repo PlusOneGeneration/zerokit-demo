@@ -1,14 +1,13 @@
 import {Injectable} from "@angular/core";
 import {ZeroKitResource} from "./zero-kit.resource";
-
-declare let zkit_sdk;
+import {User} from "../user/User";
 
 @Injectable()
 export class ZeroKitService {
   constructor(private zeroKitResource: ZeroKitResource) {
   }
 
-  register(user: any): Promise<any> {
+  register(user: User): Promise<any> {
     return this.zeroKitResource.register(user)
       .$observable
       .toPromise();
