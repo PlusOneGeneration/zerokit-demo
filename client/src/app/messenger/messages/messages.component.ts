@@ -3,6 +3,7 @@ import {Message} from "../models/Message";
 import {MessageService} from "../services/message.service";
 import {RoomService} from "../services/room.service";
 import {Room} from "../models/Room";
+import {UserService} from "../../user/user.service";
 
 @Component({
   selector: 'messages',
@@ -15,7 +16,8 @@ export class MessagesComponent implements OnInit {
   loading: boolean = false;
 
   constructor(private messageService: MessageService,
-              private roomService: RoomService) {
+              private roomService: RoomService,
+              private userService: UserService) {
   }
 
   ngOnInit(): void {
@@ -39,7 +41,10 @@ export class MessagesComponent implements OnInit {
 
       this.messageService.sendMessage(this.message)
         .then((message) => this.messageService.decryptMessage(message))
-        .then((message) => this.messages.push(message as Message))
+        .then((message) => {
+          message.fromUser = this.userService.user$.getValue();
+          this.messages.push(message as Message)
+        })
         .then(() => this.message = new Message())
         .then(() => this.loading = false);
     }
