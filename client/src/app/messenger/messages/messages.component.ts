@@ -25,7 +25,7 @@ export class MessagesComponent implements OnInit {
       .subscribe((room) => {
         if (room) {
           this.room = room;
-          this.readMessages(room);
+          this.decryptMessages(room);
         }
       });
   }
@@ -38,17 +38,17 @@ export class MessagesComponent implements OnInit {
       this.message.toUser = this.roomService.roomWithUser$.getValue()._id;
 
       this.messageService.sendMessage(this.message)
-        .then((message) => this.messageService.readMessage(message))
+        .then((message) => this.messageService.decryptMessage(message))
         .then((message) => this.messages.push(message as Message))
         .then(() => this.message = new Message())
         .then(() => this.loading = false);
     }
   }
 
-  readMessages(room: Room): void {
+  decryptMessages(room: Room): void {
     this.loading = true;
 
-    this.messageService.readMessages(room)
+    this.messageService.decryptMessagesByRoom(room)
       .then((messages) => this.messages = messages)
       .then(() => this.loading = false);
   }

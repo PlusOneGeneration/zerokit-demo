@@ -49,17 +49,17 @@ export class MessageService {
       });
   }
 
-  readMessages(room: Room): Promise<Message[]> {
+  decryptMessagesByRoom(room: Room): Promise<Message[]> {
     return this.getMessagesByRoom(room)
       .then((messages) => {
         let promises = [];
-        promises = messages.map((message) => this.readMessage(message));
+        promises = messages.map((message) => this.decryptMessage(message));
 
         return Promise.all(promises);
       });
   }
 
-  readMessage(message: Message): Promise<Message> {
+  decryptMessage(message: Message): Promise<Message> {
     return this.zeroKitSdkService.decrypt(message.text)
       .then((decryptedText) => message.decryptedText = decryptedText)
       .then(() => message);
