@@ -6,6 +6,7 @@ module.exports = (container) => {
     container.add('RoomService', require('../services/RoomService'), ['Room']);
     container.add('MessageService', require('../services/MessageService'), ['Message']);
     container.add('FormService', require('../services/FormService'), []);
+    container.add('AuthService', require('../services/AuthService'), []);
 
     // Models
     container.add('User', require('../models/User'), ['Mongoose']);

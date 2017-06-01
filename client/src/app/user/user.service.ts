@@ -32,11 +32,11 @@ export class UserService {
           (user) => {
             return this.zeroKitSdkService.getCurrentUserInSession()
               .then((zkitUserId) => {
-
                 if (user.zkitId == zkitUserId) {
                   this.user$.next(user);
                   resolve(user);
                 }
+                reject();
               })
               .catch((err) => reject(err));
           },
@@ -51,6 +51,8 @@ export class UserService {
               this.user$.next(user);
               resolve(user);
             }
+
+            reject();
           })
           .catch((err) => reject(err));
       }

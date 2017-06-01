@@ -6,6 +6,7 @@ module.exports = (app) => {
     const UserService = app.container.get('UserService');
     const ZeroKitService = app.container.get('ZeroKitService');
     const FormService = app.container.get('FormService');
+    const AuthService = app.container.get('AuthService');
 
     const createTresorForm = FormService.create(
         FormService.field('tresorId').trim().required()
@@ -60,7 +61,6 @@ module.exports = (app) => {
                     })
             })
             .catch((err) => next(err));
-
     });
 
     router.get('/get-user-id', (req, res, next) => {
@@ -77,12 +77,12 @@ module.exports = (app) => {
             );
     });
 
-    router.post('/tresor', createTresorForm, (req, res, next) => {
+    router.post('/tresor', AuthService.isAuthorized(), createTresorForm, (req, res, next) => {
         return ZeroKitService.createTresor(req.form.tresorId)
             .then(() => res.json());
     });
 
-    router.post('/tresor/invite/approve', approveShareForm, (req, res, next) => {
+    router.post('/tresor/invite/approve', AuthService.isAuthorized(), approveShareForm, (req, res, next) => {
         return ZeroKitService.approveInviteToTresor(req.form.operationId)
             .then(
                 () => res.json(),
