@@ -8,37 +8,21 @@ export const authRoutes: Routes = [
   {
     path: 'auth',
     component: AuthComponent,
-    data: {title: 'Auth'},
-    // canActivate: [AuthCanActivate],
     children: [
       {
         path: 'sign-in',
         component: LoginComponent,
-        resolve: {
-          // auth: AuthResolver
-        }
       },
       {
         path: 'sign-up',
-        component: RegistrationComponent,
-        resolve: {
-          // auth: AuthResolver
-        }
+        component: RegistrationComponent
       }
     ]
-  },
-  {
-    path: '',
-    redirectTo: 'auth/sign-in',
-    pathMatch: 'full'
   }
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forChild(authRoutes)
-  ],
-  // providers: [AuthResolver, AuthCanActivate],
+  imports: [],
   exports: [RouterModule]
 })
 export class AuthRoutingModule {

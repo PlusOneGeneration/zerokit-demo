@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
               .then((resp) => {
                 this.userService.me();
                 this.loading = false;
-                this.router.navigate(['messenger']);
+                this.router.navigate(['app', 'messenger']);
               })
               .catch((err) => console.log('err', err));
           });

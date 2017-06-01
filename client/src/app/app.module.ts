@@ -7,10 +7,10 @@ import { AppComponent } from './app.component';
 import {AuthModule} from "./auth/auth.module";
 import {ZeroKitModule} from "./zero-kit/zero-kit.module";
 import {ResourceModule} from "ngx-resource";
-import {RouterModule} from "@angular/router";
 import {UserModule} from "./user/user.module";
 import {MessengerModule} from "./messenger/messenger.module";
 import {UiModule} from "./ui/ui.module";
+import {AppRoutingModule} from "./app-routing.module";
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import {UiModule} from "./ui/ui.module";
     FormsModule,
     HttpModule,
     ResourceModule.forRoot(),
-    RouterModule.forRoot([]),
+    AppRoutingModule,
     AuthModule,
     ZeroKitModule,
     UserModule,

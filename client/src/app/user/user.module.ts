@@ -1,28 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { UserRoutingModule} from "./user.routing.module";
 import {RouterModule} from "@angular/router";
 
-import { UserComponent } from './user.component';
 import { UserService } from './user.service';
 import {UserResource} from "./user.resource";
+import {UserResolver} from "./user.resolver";
 
 
 @NgModule({
   declarations: [
-    UserComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot([]),
-    UserRoutingModule
   ],
   providers: [
     UserResource,
-    UserService
+    UserService,
+    UserResolver
   ],
-  exports: [UserComponent],
+  exports: [],
   // bootstrap: [UserComponent]
 })
 export class UserModule { }
