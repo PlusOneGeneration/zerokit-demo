@@ -25,7 +25,7 @@ export class ZeroKitService {
       .toPromise();
   }
 
-  getUserByName(user: any): Promise<any> {
+  getUserByName(user: User): Promise<any> {
     return this.zeroKitResource.getUserByName(user)
       .$observable
       .toPromise();

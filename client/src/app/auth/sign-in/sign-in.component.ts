@@ -3,6 +3,7 @@ import {ZeroKitService} from "../../zero-kit/zero-kit.service";
 import {UserService} from "../../user/user.service";
 import {Router} from "@angular/router";
 import {ZeroKitSdkService} from "../../zero-kit/zero-kit-sdk.service";
+import {User} from "../../user/User";
 
 @Component({
   selector: 'sign-in',
@@ -10,7 +11,7 @@ import {ZeroKitSdkService} from "../../zero-kit/zero-kit-sdk.service";
 })
 
 export class SignInComponent implements OnInit {
-  user: any = {userName: ''};
+  user: User = new User;
   zkitLoginForm: any;
   loading: boolean = false;
 
@@ -31,18 +32,14 @@ export class SignInComponent implements OnInit {
     this.loading = true;
 
     this.zeroKitService.getUserByName(this.user)
-      .then((res) => {
-        this.zkitLoginForm.login(res.zkitUserId)
-          .then(() => {
-            this.zeroKitSdkService.iFrameIdpAuth(this.zkitAuthFrameRef.nativeElement)
-              .then((resp) => {
-                this.userService.me();
-                this.loading = false;
-                this.router.navigate(['app', 'messenger']);
-              })
-              .catch((err) => console.log('err', err));
-          });
-      });
+      .then((response) => this.zkitLoginForm.login(response.zkitUserId))
+      .then(() => this.zeroKitSdkService.iFrameIdpAuth(this.zkitAuthFrameRef.nativeElement))
+      .then(() => {
+        this.userService.me();
+        this.loading = false;
+        this.router.navigate(['app', 'messenger']);
+      })
+      .catch((err) => console.error(err));
   }
 
 }
