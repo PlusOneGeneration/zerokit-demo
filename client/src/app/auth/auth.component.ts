@@ -9,7 +9,6 @@ export class AuthComponent implements OnInit {
   constructor(private router: Router) {
   }
 
-
   ngOnInit(): void {
     if (window.location.pathname.indexOf('sign-up') >= 0) {
 

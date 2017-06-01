@@ -4,13 +4,12 @@ import {UserService} from "../../user/user.service";
 import {Router} from "@angular/router";
 import {ZeroKitSdkService} from "../../zero-kit/zero-kit-sdk.service";
 
-//TODO @@@dr rename login to sign in
 @Component({
-  selector: 'login',
-  templateUrl: './login.component.html',
+  selector: 'sign-in',
+  templateUrl: './sign-in.component.html',
 })
 
-export class LoginComponent implements OnInit {
+export class SignInComponent implements OnInit {
   user: any = {userName: ''};
   zkitLoginForm: any;
   loading: boolean = false;
@@ -28,7 +27,7 @@ export class LoginComponent implements OnInit {
     this.zkitLoginForm = this.zeroKitSdkService.getLoginIframe(this.zkitLoginRef.nativeElement);
   }
 
-  login() {
+  signIn() {
     this.loading = true;
 
     this.zeroKitService.getUserByName(this.user)

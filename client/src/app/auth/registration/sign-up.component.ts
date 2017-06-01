@@ -3,13 +3,12 @@ import {ZeroKitService} from "../../zero-kit/zero-kit.service";
 import {Router} from "@angular/router";
 import {ZeroKitSdkService} from "../../zero-kit/zero-kit-sdk.service";
 
-//TODO @@@dr rename registration to sign up
 @Component({
-  selector: 'registration',
-  templateUrl: './registration.component.html'
+  selector: 'sign-up',
+  templateUrl: './sign-up.component.html'
 })
 
-export class RegistrationComponent implements OnInit {
+export class SignUpComponent implements OnInit {
   user: any = {login: '', password: ''};
   zkitRegisterForm: any;
   loading: boolean = false;
@@ -25,7 +24,7 @@ export class RegistrationComponent implements OnInit {
     this.zkitRegisterForm = this.zeroKitSdkService.getRegistrationIframe(this.zkitRegistrationRef.nativeElement);
   }
 
-  register() {
+  signUp() {
     this.loading = true;
     //TODO @@@dr refact it
     console.log(this.user);
@@ -50,10 +49,7 @@ export class RegistrationComponent implements OnInit {
                 console.log('err +>>', err);
                 this.loading = false;
               })
-
           })
-
-
       })
   }
 
