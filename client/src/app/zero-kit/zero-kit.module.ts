@@ -1,32 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import {RouterModule} from "@angular/router";
-
 import { ZeroKitService } from './zero-kit.service';
 import {ZeroKitSdkService} from "./zero-kit-sdk.service";
-import {ZeroKitRoutingModule} from "./zero-kit.routing.module";
-import {ZeroKitComponent} from "./zero-kit.component";
-import {EncryptComponent} from "./encrypt/encrypt.component";
 import {FormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
-import {DecryptComponent} from "./decrypt/decrypt.component";
-import {ShareComponent} from "./share/share.component";
-
 
 @NgModule({
-  declarations: [
-    ZeroKitComponent,
-    EncryptComponent,
-    DecryptComponent,
-    ShareComponent
-  ],
+  declarations: [],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([]),
     FormsModule,
     CommonModule,
-    ZeroKitRoutingModule
   ],
   providers: [
     ZeroKitService,

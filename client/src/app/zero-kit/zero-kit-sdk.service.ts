@@ -8,13 +8,13 @@ export class ZeroKitSdkService {
   constructor() {
   }
 
-  // setSdkIFrame(iFrame) {
-  //   this.zeroKitSdk = iFrame;
-  // }
-  //
-  // getSdkIFrame() {
-  //   return this.zeroKitSdk;
-  // }
+  getRegistrationIframe(el: any): void {
+    return zkit_sdk.getRegistrationIframe(el);
+  }
+
+  getLoginIframe(el: any): void {
+    return zkit_sdk.getLoginIframe(el);
+  }
 
   createTresor(): Promise<string> {
     return new Promise((resolve, reject) => {
@@ -62,6 +62,30 @@ export class ZeroKitSdkService {
         .then(() => resolve())
         .catch((err) => reject(err));
     })
+  }
+
+  iFrameIdpAuth(element, path = ''): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let iframe = document.createElement("iframe");
+      iframe.className = "hidden";
+      element.appendChild(iframe);
+
+      iframe.onload = function () {
+        try {
+          if (iframe.contentWindow
+            && iframe.contentWindow.location
+            && iframe.contentWindow.location.origin == window.location.origin) {
+            resolve(iframe.contentWindow.location.href);
+          }
+        } catch (ex) {
+        }
+      };
+      //TODO @@@dr add config
+      // Set the iframe to the idp login url on the backend
+      iframe.src = window.location.origin + "/api/auth/login";
+
+      console.log('iframe', iframe);
+    });
   }
 
 }

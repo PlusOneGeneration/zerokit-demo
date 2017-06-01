@@ -2,6 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ZeroKitService} from "../../zero-kit/zero-kit.service";
 import {UserService} from "../../user/user.service";
 import {Router} from "@angular/router";
+import {ZeroKitSdkService} from "../../zero-kit/zero-kit-sdk.service";
 
 //TODO @@@dr rename login to sign in
 @Component({
@@ -18,12 +19,13 @@ export class LoginComponent implements OnInit {
   @ViewChild('zkitAuthFrame') zkitAuthFrameRef: ElementRef;
 
   constructor(private zeroKitService: ZeroKitService,
+              private zeroKitSdkService: ZeroKitSdkService,
               private userService: UserService,
               private router: Router) {
   }
 
   ngOnInit(): void {
-    this.zkitLoginForm = this.zeroKitService.getLoginIframe(this.zkitLoginRef.nativeElement);
+    this.zkitLoginForm = this.zeroKitSdkService.getLoginIframe(this.zkitLoginRef.nativeElement);
   }
 
   login() {
@@ -33,7 +35,7 @@ export class LoginComponent implements OnInit {
       .then((res) => {
         this.zkitLoginForm.login(res.zkitUserId)
           .then(() => {
-            this.zeroKitService.iFrameIdpAuth(this.zkitAuthFrameRef.nativeElement)
+            this.zeroKitSdkService.iFrameIdpAuth(this.zkitAuthFrameRef.nativeElement)
               .then((resp) => {
                 this.userService.me();
                 this.loading = false;

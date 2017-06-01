@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ZeroKitService} from "../../zero-kit/zero-kit.service";
-import {UserService} from "../../user/user.service";
 import {Router} from "@angular/router";
+import {ZeroKitSdkService} from "../../zero-kit/zero-kit-sdk.service";
 
 //TODO @@@dr rename registration to sign up
 @Component({
@@ -17,12 +17,12 @@ export class RegistrationComponent implements OnInit {
   @ViewChild('registrationIframe') zkitRegistrationRef: ElementRef;
 
   constructor(private zeroKitService: ZeroKitService,
-              private userService: UserService,
+              private zeroKitSdkService: ZeroKitSdkService,
               private router: Router) {
   }
 
   ngOnInit(): void {
-    this.zkitRegisterForm = this.zeroKitService.getRegistrationIframe(this.zkitRegistrationRef.nativeElement);
+    this.zkitRegisterForm = this.zeroKitSdkService.getRegistrationIframe(this.zkitRegistrationRef.nativeElement);
   }
 
   register() {

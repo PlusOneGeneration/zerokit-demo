@@ -11,7 +11,6 @@ export class ZeroKitResource extends Resource {
 
   @ResourceAction({
     method: RequestMethod.Post,
-    // url: '/api/user/init-user-registration'
     url: '/api/zerokit/init-user-registration'
   })
   register: ResourceMethod<any, any>;
