@@ -35,10 +35,9 @@ module.exports = (app) => {
             })
             .then(() => ZeroKitService.initUserRegistration())
             .then((zeroKitInitInfo) => {
-                let data = zeroKitInitInfo;
-                data.email = email;
+                zeroKitInitInfo.email = email;
 
-                return UserService.create(data);
+                return UserService.create(zeroKitInitInfo);
             })
             .then((user) => res.json(user))
             .catch((err) => next(err));
@@ -47,7 +46,7 @@ module.exports = (app) => {
     router.post('/finish-user-registration', (req, res, next) => {
         const userId = req.body.userId;
         const userVerifier = req.body.validationVerifier;
-
+        //TODO @@@dr clean up
         // return UserService.getByQuery({zkitId: userId, state: 0})
         return UserService.getOneByQuery({zkitId: userId})
             .then((user) => {
@@ -62,7 +61,7 @@ module.exports = (app) => {
 
                 return user.save()
                     .then(() => {
-                       return ZeroKitService
+                        return ZeroKitService
                             .validateUser(
                                 userId,
                                 user.registrationData.sessionId,
@@ -77,7 +76,7 @@ module.exports = (app) => {
     });
 
     router.post('/validate-user', (req, res, next) => {
-
+        //TODO @@@dr clean up
     });
 
     router.get('/get-user-id', (req, res, next) => {
@@ -97,7 +96,7 @@ module.exports = (app) => {
         return ZeroKitService.createTresor(req.form.tresorId)
             .then(() => res.json());
     });
-    
+
     router.post('/tresor/invite/approve', approveShareForm, validate, (req, res, next) => {
         return ZeroKitService.approveInviteToTresor(req.form.operationId)
             .then(
