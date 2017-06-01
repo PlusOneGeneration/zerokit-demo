@@ -51,7 +51,7 @@ module.exports = (app) => {
                 return user.save()
                     .then(() => {
                         return ZeroKitService
-                            .validateUser(
+                            .approveUserRegistration(
                                 userId,
                                 user.registrationData.sessionId,
                                 user.registrationData.sessionVerifier,

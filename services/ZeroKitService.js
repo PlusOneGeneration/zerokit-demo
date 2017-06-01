@@ -54,14 +54,13 @@ module.exports = class ZeroKitService {
         function hmacSha256base64(data, key) {
             return crypto.createHmac("sha256", new Buffer(key, "hex")).update(data).digest("base64");
         }
-
     }
 
     initUserRegistration() {
         return this.adminApiCall('/user/init-user-registration', {});
     }
 
-    validateUser(userId, regSessionId, regSessionVerifier, regValidationVerifier) {
+    approveUserRegistration(userId, regSessionId, regSessionVerifier, regValidationVerifier) {
         return this.adminApiCall('/user/validate-user-registration', {
             RegSessionId: regSessionId,
             RegSessionVerifier: regSessionVerifier,
@@ -76,13 +75,5 @@ module.exports = class ZeroKitService {
 
     approveInviteToTresor(operationId) {
         return this.adminApiCall("/tresor/approve-share", { OperationId: operationId });
-    }
-
-    finishUserRegistration(userId, userVerifier) {
-
-    }
-
-    validateUserRegistration() {
-
     }
 }
