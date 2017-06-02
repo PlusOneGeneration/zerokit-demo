@@ -2,7 +2,7 @@ import {AuthComponent} from "./auth.component";
 import {RouterModule, Routes} from "@angular/router";
 import {NgModule} from "@angular/core";
 import {SignInComponent} from "./sign-in/sign-in.component";
-import {SignUpComponent} from "./registration/sign-up.component";
+import {SignUpComponent} from "./sign-up/sign-up.component";
 
 export const authRoutes: Routes = [
   {
