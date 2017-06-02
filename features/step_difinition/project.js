@@ -10,4 +10,8 @@ defineSupportCode(function ({Given, When, Then}) {
             .then(() => this.tester.iSee('h1:contains(OK)'));
     });
 
+    Given('I see main app page', function () {
+        return this.tester.iSee(`h3:contains('Users')`)
+    });
+
 });

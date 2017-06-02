@@ -1,7 +1,7 @@
 const {defineSupportCode} = require('cucumber');
 
 defineSupportCode(function ({Given, When, Then}) {
-    When('I see sign in page', function () {
+    Given('I see sign in page', function () {
         return this.tester.iSee(`h2:contains('Sign in')`)
     });
 
