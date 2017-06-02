@@ -73,7 +73,7 @@ module.exports = (app) => {
     });
 
     router.get('/get-user-id', (req, res, next) => {
-        return UserService.getByEmail(req.query.userName)
+        return UserService.getByEmail(req.query.email)
             .then(
                 (user) => {
                     if (!user) {
