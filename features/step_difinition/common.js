@@ -8,4 +8,8 @@ defineSupportCode(function({Given, When, Then}) {
     When('I click button {name}', function(name) {
         return this.tester.iClick(`button:contains(${name})`);
     });
+
+    Given('{stringInDoubleQuotes} browser', function (stringInDoubleQuotes) {
+        return this.tester.iUseBrowser(stringInDoubleQuotes);
+    });
 });

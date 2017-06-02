@@ -12,6 +12,14 @@ function CustomWorld() {
     });
 
     this.tester.setup({waitTimeout: 60 * 1000});
+
+    this.tester.iUseBrowser = function (name) {
+        return this.getTester(name)
+            .then((tester) => {
+                tester.applyTo(this);
+                return tester;
+            });
+    };
 }
 
 defineSupportCode(({setWorldConstructor, setDefaultTimeout}) => {
