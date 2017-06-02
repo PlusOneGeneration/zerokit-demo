@@ -4,6 +4,7 @@ import {MessageService} from "../services/message.service";
 import {RoomService} from "../services/room.service";
 import {Room} from "../models/Room";
 import {UserService} from "../../user/user.service";
+import {User} from "../../user/User";
 
 @Component({
   selector: 'messages',
@@ -14,6 +15,7 @@ export class MessagesComponent implements OnInit {
   messages: Message[] = [];
   room: Room;
   loading: boolean = false;
+  me: User;
 
   constructor(private messageService: MessageService,
               private roomService: RoomService,
@@ -30,6 +32,8 @@ export class MessagesComponent implements OnInit {
           this.decryptMessages(room);
         }
       });
+
+    this.me = this.userService.user$.getValue();
   }
 
   send(): void {
