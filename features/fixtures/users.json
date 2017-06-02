@@ -1,0 +1,24 @@
+[
+  {
+    "_id": "5931565f604b7d09bc07d812",
+    "email": "rokki@example.com",
+    "zkitId": "20170602121319.ekha81kc@s7g8gjvuj7.tresorit.io",
+    "registrationData": {
+      "sessionId": "089788363830bb5481d533189db26fdd",
+      "sessionVerifier": "56a12160e0c56c71e4dfd9285e84f7d0",
+      "validationVerifier": "b97794504b62d9640b491ab0202d12cf"
+    },
+    "state": 1
+  },
+  {
+    "_id": "5931565f604b7d09bc07d813",
+    "email": "jack@example.com",
+    "zkitId": "20170602121629.3nrj3l4z@s7g8gjvuj7.tresorit.io",
+    "registrationData": {
+      "sessionId": "ca76b96e4282c52757c0797939077013",
+      "sessionVerifier": "fe81a78dc56c34700d8838621c539c1f",
+      "validationVerifier": "4daa70dab13742bc80fc48d2c60a38ee"
+    },
+    "state": 1
+  }
+]

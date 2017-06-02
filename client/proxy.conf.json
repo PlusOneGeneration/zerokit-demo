@@ -6,5 +6,9 @@
   "/lib": {
     "target": "http://192.168.10.20:3000",
     "secure": "false"
+  },
+  "/test": {
+    "target": "http://192.168.10.20:3000",
+    "secure": "false"
   }
 }

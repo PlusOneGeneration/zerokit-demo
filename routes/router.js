@@ -5,5 +5,9 @@ module.exports = (app) => {
     router.use('/libs', require('./libs')(app));
     router.use('/api', require('./api')(app));
 
+    if(process.env.NODE_ENV == 'test') {
+        router.use('/test', require('./test')(app));
+    }
+
     return router;
 }

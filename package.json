@@ -6,6 +6,7 @@
   "scripts": {
     "start": "concurrently \"npm run start.backend\" \"npm run start.front\"",
     "start.backend": "nodemon -i node_modules -i .vagrant -i client app.js",
+    "start.test": "NODE_ENV=test npm run start.backend",
     "start.front": "cd client/ && pwd && npm run start.proxy",
     "test": "cucumber.js"
   },
