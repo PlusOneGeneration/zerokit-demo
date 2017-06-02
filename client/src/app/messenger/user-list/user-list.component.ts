@@ -24,10 +24,6 @@ export class UserListComponent implements OnInit {
           .catch((err) => console.log(err));
       })
 
-    this.userService.getUsers()
-      .then((users) => this.users = users)
-      .catch((err) => console.log(err));
-
     this.roomService.roomWithUser$
         .subscribe((user) => {
           if (user) {
