@@ -1,9 +1,7 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {authRoutes} from "./auth/auth.routing.module";
-import {zeroKitRoutes} from "./zero-kit/zero-kit.routing.module";
 import {messengerRoutes} from "./messenger/messenger.routing.module";
-import {MessengerComponent} from "./messenger/messenger.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'app/messenger', pathMatch: 'full'},
