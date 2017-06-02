@@ -7,7 +7,7 @@
     "start": "concurrently \"npm run start.backend\" \"npm run start.front\"",
     "start.backend": "nodemon -i node_modules -i .vagrant -i client app.js",
     "start.front": "cd client/ && pwd && npm run start.proxy",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cucumber.js"
   },
   "author": "",
   "license": "ISC",
@@ -24,5 +24,11 @@
     "passport-openidconnect": "git+https://github.com/jaredhanson/passport-openidconnect.git#ac1c0257f02353f818be33c0602cca5883d97235",
     "plus.application": "^1.1.14",
     "request-promise-native": "^1.0.4"
+  },
+  "devDependencies": {
+    "chromedriver": "^2.29.0",
+    "cucumber": "^2.3.0",
+    "plus.tester": "^0.1.4",
+    "selenium-webdriver": "^3.4.0"
   }
 }
