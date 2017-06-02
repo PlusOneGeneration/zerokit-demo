@@ -5,6 +5,7 @@ import {Room} from "../models/Room";
 import {ZeroKitService} from "../../zero-kit/zero-kit.service";
 import {ZeroKitSdkService} from "../../zero-kit/zero-kit-sdk.service";
 import {UserService} from "../../user/user.service";
+import * as moment from "moment";
 
 @Injectable()
 export class MessageService {
@@ -62,6 +63,13 @@ export class MessageService {
   decryptMessage(message: Message): Promise<Message> {
     return this.zeroKitSdkService.decrypt(message.text)
       .then((decryptedText) => message.decryptedText = decryptedText)
+      .then(() => message = this.formatMessageDate(message, 'HH:mm:ss YYYY-MM-DD'))
       .then(() => message);
+  }
+
+  formatMessageDate(message: Message, format: string = 'YYYY-MM-DD'): Message {
+    message.date = moment(message.date).format(format);
+
+    return message;
   }
 }

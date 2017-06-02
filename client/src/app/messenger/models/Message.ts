@@ -8,5 +8,5 @@ export class Message {
   decryptedText?: string;
   room?: string;
   tresorId: string;
-  date?: Date;
+  date?: Date|string;
 }
